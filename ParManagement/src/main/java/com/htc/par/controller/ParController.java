@@ -9,16 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
-	
-	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public ModelAndView home(Locale locale,Model model) {
-		ModelAndView modelView  = new ModelAndView();
-		modelView.setViewName("home");
-		return modelView;
-		
-	}
+public class ParController {
 	
 	@RequestMapping(value="/parentry", method=RequestMethod.GET)
 	public ModelAndView parEntry(Locale locale,Model model) {
@@ -27,8 +18,5 @@ public class HomeController {
 		return modelView;
 		
 	}
-	
-
-
 
 }

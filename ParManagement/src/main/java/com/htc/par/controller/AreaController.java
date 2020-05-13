@@ -9,26 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
+public class AreaController {
 	
-	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public ModelAndView home(Locale locale,Model model) {
+	@RequestMapping(value="/area", method=RequestMethod.GET)
+	public ModelAndView area(Locale locale,Model model) {
 		ModelAndView modelView  = new ModelAndView();
-		modelView.setViewName("home");
+		modelView.setViewName("area");
 		return modelView;
 		
 	}
 	
-	@RequestMapping(value="/parentry", method=RequestMethod.GET)
-	public ModelAndView parEntry(Locale locale,Model model) {
-		ModelAndView modelView  = new ModelAndView();
-		modelView.setViewName("parentry");
-		return modelView;
-		
-	}
-	
-
-
 
 }

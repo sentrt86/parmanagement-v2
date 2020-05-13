@@ -9,26 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
+public class SkillController {
 	
-	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public ModelAndView home(Locale locale,Model model) {
+	@RequestMapping(value="/skill", method=RequestMethod.GET)
+	public ModelAndView skill(Locale locale,Model model) {
 		ModelAndView modelView  = new ModelAndView();
-		modelView.setViewName("home");
+		modelView.setViewName("skill");
 		return modelView;
 		
 	}
-	
-	@RequestMapping(value="/parentry", method=RequestMethod.GET)
-	public ModelAndView parEntry(Locale locale,Model model) {
-		ModelAndView modelView  = new ModelAndView();
-		modelView.setViewName("parentry");
-		return modelView;
-		
-	}
-	
-
-
 
 }
