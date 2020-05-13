@@ -10,24 +10,44 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-	
-	
+
+
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView home(Locale locale,Model model) {
 		ModelAndView modelView  = new ModelAndView();
 		modelView.setViewName("home");
 		return modelView;
-		
+
 	}
-	
+
 	@RequestMapping(value="/parentry", method=RequestMethod.GET)
-	public ModelAndView parEntry(Locale locale,Model model) {
+	public ModelAndView parentry(Locale locale,Model model) {
 		ModelAndView modelView  = new ModelAndView();
 		modelView.setViewName("parentry");
 		return modelView;
-		
+
 	}
-	
+
+	@RequestMapping(value="/area", method=RequestMethod.GET) 
+	public ModelAndView area(Locale locale,Model model) { 
+		System.out.println("pradeep"); ModelAndView
+		modelView = new ModelAndView(); 
+		modelView.setViewName("area"); 
+		return modelView;
+
+	}
+
+	@RequestMapping(value="/skill", method=RequestMethod.GET)
+	public ModelAndView skill(Locale locale,Model model) {
+		ModelAndView modelView  = new ModelAndView();
+		modelView.setViewName("skill");
+		return modelView;
+
+	}
+
+
+
+
 
 
 
