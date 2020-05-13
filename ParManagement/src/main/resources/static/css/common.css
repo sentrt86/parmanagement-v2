@@ -1,0 +1,156 @@
+
+body {
+ font-family: 'Roboto', sans-serif;
+ overflow-x: hidden;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  position: fixed;
+  width: 200px;
+  z-index: 1;
+  top: 14%;
+  left: 0;
+  background-color: #0d223f;
+  overflow-x: hidden;
+  padding-top: 20px;
+  height: 670px; 
+  overflow-y:auto;
+}
+
+/* Style the sidenav links and the dropdown button */
+
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  display: block;
+  border:none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  font-family: Roboto;
+  font-weight: 100;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+ /*  color: #f1f1f1; */
+  color:#808080;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: #0d223f;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #0d223f;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+.hrline{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border: 2px solid #ffa500;
+}
+
+
+.header {
+	padding: 20px;
+    height:80px;
+    width: 100%;
+}
+
+.htc_logo {
+	float: left;
+	width:113px;
+	height:60px;
+}
+
+.row {
+	margin-right: 0px !important;
+	margin-left: 0px !important;
+}
+
+.header_title{
+	float:left;
+	margin-left:80px;
+	color:#0d223f;
+	text-align: left;
+
+}
+
+.header_right{
+	display: block;
+    flex-grow: 10;
+    position:relative;
+}
+
+.username{
+	float:right;
+	margin-top:40px;
+	margin-right:40px;
+	width:300px;
+	text-align: right;
+	
+}
+
+.logout{
+	 float: right;
+	 margin-top: 40px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1.5rem; 
+  font-size: 10px;
+  text-align:center;           /* Footer height */
+}
+
+.screen-title{
+	padding-top: 20px;
+	text-align: center;
+	font-size:30px;
+}
+
+.btn-primary{
+	background-color:#0d223f;
+	border:none;
+}
+
+.btn-primary:hover{
+	background-color:#0d223f;
+	border:none;
+	outline:none;
+}
