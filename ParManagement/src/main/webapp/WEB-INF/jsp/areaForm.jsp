@@ -1,7 +1,13 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ page session="false" %>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Area and Product</title>
+	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!--  Jquery CSS -->
@@ -93,101 +99,24 @@
 				<h1 class="screen-title">Area / Product</h1>
 			</div>
 		    <div class="tablediv">
-				<table id="areaTable" class="table table-striped table-bordered dataTable table-font" style="width:100%">
-			        <thead>
-			            <tr>
-			                <th>Area Id</th>
-			                <th>Area Name</th>
-			                <th>Area Active</th>
-			                <th>Action</th>
-			            </tr>
-			        </thead>
-			        <tbody>
-			            <tr>
-			                <td>1</td>
-			                <td>P C</td>
-			                <td>Yes</td>
-			                <td><button class="btnAreaEdit">Edit</button> <button id="btnAreaDelete" class="btnAreaDelete" >Delete</button></td>
-			            </tr>
-			            <tr>
-			                <td>Garrett Winters</td>
-			                <td>Accountant</td>
-			                <td>No</td>
-			                <td><button class="btnAreaEdit">Edit</button> <button id="btnAreaDelete" class="btnAreaDelete" >Delete</button></td>
-			            </tr>
-			            <tr>
-			                <td>Ashton Cox</td>
-			                <td>Junior Technical Author</td>
-			                <td>San Francisco</td>
-			                <td>66</td>
-			            </tr>
-			            <tr>
-			                <td>Garrett Winters</td>
-			                <td>Accountant</td>
-			                <td>Tokyo</td>
-			                <td>63</td>
-			            </tr>
-			            <tr>
-			                <td>Ashton Cox</td>
-			                <td>Junior Technical Author</td>
-			                <td>San Francisco</td>
-			                <td>66</td>
-			            </tr>
-			            <tr>
-			                <td>Garrett Winters</td>
-			                <td>Accountant</td>
-			                <td>Tokyo</td>
-			                <td>63</td>
-			            </tr>
-			            <tr>
-			                <td>Ashton Cox</td>
-			                <td>Junior Technical Author</td>
-			                <td>San Francisco</td>
-			                <td>66</td>
-			            </tr>
-			            <tr>
-			                <td>Garrett Winters</td>
-			                <td>Accountant</td>
-			                <td>Tokyo</td>
-			                <td>63</td>
-			            </tr>
-			            <tr>
-			                <td>Ashton Cox</td>
-			                <td>Junior Technical Author</td>
-			                <td>San Francisco</td>
-			                <td>66</td>
-			            </tr>
-			            <tr>
-			                <td>Garrett Winters</td>
-			                <td>Accountant</td>
-			                <td>Tokyo</td>
-			                <td>63</td>
-			            </tr>
-			            <tr>
-
-			                <td>Ashton Cox</td>
-			                <td>Junior Technical Author</td>
-			                <td>San Francisco</td>
-			                <td>66</td>
-			            </tr>
-			            <tr>
-
-			                <td>Garrett Winters</td>
-			                <td>Accountant</td>
-			                <td>Tokyo</td>
-			                <td>63</td>
-			            </tr>
-			            <tr>
-
-			                <td>Ashton Cox</td>
-			                <td>Junior Technical Author</td>
-			                <td>San Francisco</td>
-			                <td>66</td>
-			            </tr>
-			
-			        </tbody>
-			
-			    </table>
+		    	<table id="areaTable" class="table table-striped table-bordered" style="width:100%">
+				     <thead>
+				         <tr>
+				             <th>Area Id</th>
+				             <th>Area Name</th>
+				             <th>Active</th>
+				         </tr>
+				     </thead>
+				     <tbody>
+				     	<c:forEach var="area" items="${allAreasList}">
+				     		<tr>
+				     			<td>${area.areaId}</td>
+				     			<td>${area.areaName}</td>
+				     			<td>${area.areaActive}</td>
+				     		</tr>        		
+				     	</c:forEach>
+				     </tbody>
+				</table>
 		   </div>
 		</div>
 		<footer class="footer">
@@ -258,5 +187,4 @@
 			</div>
 		</div>
 </body>
-</html> 
-
+</html>

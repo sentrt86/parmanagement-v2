@@ -1,7 +1,12 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ page session="false" %>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>PAR Entry</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!--  Jquery CSS -->
 	<link rel="stylesheet" href="static/css/jquery-ui.min.css">
