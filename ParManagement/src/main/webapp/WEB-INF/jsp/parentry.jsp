@@ -20,8 +20,8 @@
 	<link rel="stylesheet" href="static/css/parentry.css">		
 	
 	<!-- JQuery -->
-	<script type="text/javascript" src="static/js/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/jquery-3.5.1.js"></script>
+<!-- 	<script type="text/javascript" src="static/js/jquery.min.js"></script> -->
 	<script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>	
 	<!-- Bootstrap core JavaScript -->
 	<script type="text/javascript" src="static/js/bootstrap.js"></script>
@@ -32,68 +32,13 @@
 </head>
 <body>
 
-
-	<div class="row header">
-		<img src="static/images/htc-logo.png" class="htc_logo"/> 
-		<div class="header_title">
-			<span><h1>PAR Management</h1></span>
-		</div>
-		<div class="header_right">		      
-		      <a href="#">
-		   		<i class="fa fa-sign-out logout" style="font-size:24px; color:#ffa500;"></i>
-		  	  </a>
-		  	  <span class="username">Pradeep Ekambaram</span>
-		</div>
-	</div>
-
-	<hr class="hrline">
-	
-
-
-		<div class="sidenav">
-		  <a href="./"><img src="static/images/home.png" width="13px" height="13px" />&nbsp;Home</a>
-		  <button class="dropdown-btn"><img src="static/images/master.png" width="13px" height="13px" />&nbsp;Masters 
-		    <i class="fa fa-caret-down"></i>
-		  </button>
-		  <div class="dropdown-container">
-		    <a href="./area">Area / Product</a>
-		    <a href="#">External Staffing</a>
-		    <a href="#">Role</a>
-		    <a href="#">Skill</a>
-		    <a href="#">Recruiter</a>
-		    <a href="#">Candidate</a>
-		    <a href="#">Pre Screener</a>
-		    <a href="#">User</a>
-		    
-		  </div>
-		  <button class="dropdown-btn"><img src="static/images/fullfillment.png" width="13px" height="13px" />&nbsp;Par Fullfillment 
-		    <i class="fa fa-caret-down"></i>
-		  </button>
-		  <div class="dropdown-container">
-		    <a href="./parentry">PAR Entry</a>
-		    <a href="#">Email Recruiters</a>
-		    <a href="#">Intent to Fill</a>
-		    <a href="#">Candidate Received</a>
-		    <a href="#">Prescreeening Results</a>
-		    <a href="#">Submit Candidate</a>
-		    <a href="#">Offer Received</a>
-		    <a href="#">Setup Submitted</a>
-		    <a href="#">Candidate Starts</a>
-		  </div>
-		   
-		  <button class="dropdown-btn"> <img src="static/images/reports.png" width="13px" height="13px" />&nbsp; Reports
-		    <i class="fa fa-caret-down"></i>
-		  </button>
-		  <div class="dropdown-container">
-		    <a href="#">Link 1</a>
-		    <a href="#">Link 2</a>
-		    <a href="#">Link 3</a>
-		  </div>
-		</div>
+		<!-- Page Header and Menu jsp -->
+		<jsp:include page="header-menu.jsp" />
+		
 	
 		<div class="main">
 		    <div>
-		    	<h1 class="screen-title">PAR Entry</h1>
+		    	<h1 class="screen-title">PAR</h1>
 		    </div>
 			<form class="parentry-form">
 			  <div class="row">

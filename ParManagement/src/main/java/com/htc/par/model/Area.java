@@ -4,58 +4,49 @@ public class Area {
 	
 	private int areaId;
 	private String areaName;
-	private boolean areaActive;
-	
-	
+	private String areaActive;
 	
 	public Area() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public Area(int areaId, String areaName, boolean areaActive) {
+	
+	public Area(int areaId, String areaName, String areaActive) {
 		super();
 		this.areaId = areaId;
 		this.areaName = areaName;
 		this.areaActive = areaActive;
 	}
 
-
 	public int getAreaId() {
 		return areaId;
 	}
-
 
 	public void setAreaId(int areaId) {
 		this.areaId = areaId;
 	}
 
-
 	public String getAreaName() {
 		return areaName;
 	}
-
 
 	public void setAreaName(String areaName) {
 		this.areaName = areaName;
 	}
 
-
-	public boolean isAreaActive() {
+	public String getAreaActive() {
 		return areaActive;
 	}
 
-
-	public void setAreaActive(boolean areaActive) {
+	public void setAreaActive(String areaActive) {
 		this.areaActive = areaActive;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Skill [areaId=" + areaId + ", areaName=" + areaName + ", areaActive=" + areaActive + "]";
+		return "Area [areaId=" + areaId + ", areaName=" + areaName + ", areaActive=" + areaActive + "]";
 	}
+	
 	
 	
 
