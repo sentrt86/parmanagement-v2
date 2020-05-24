@@ -5,7 +5,7 @@ public class ExternalStaff {
 	private int extStaffId;
 	private String extStaffName;
 	private Area area;
-	private boolean extStaffActive;
+	private String extStaffActive;
 	
 	
 	public ExternalStaff() {
@@ -14,7 +14,7 @@ public class ExternalStaff {
 	}
 
 
-	public ExternalStaff(int extStaffId, String extStaffName, Area area, boolean extStaffActive) {
+	public ExternalStaff(int extStaffId, String extStaffName, Area area, String extStaffActive) {
 		super();
 		this.extStaffId = extStaffId;
 		this.extStaffName = extStaffName;
@@ -53,12 +53,12 @@ public class ExternalStaff {
 	}
 
 
-	public boolean isExtStaffActive() {
+	public String getExtStaffActive() {
 		return extStaffActive;
 	}
 
 
-	public void setExtStaffActive(boolean extStaffActive) {
+	public void setExtStaffActive(String extStaffActive) {
 		this.extStaffActive = extStaffActive;
 	}
 

@@ -2,7 +2,6 @@ package com.htc.par.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,13 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.htc.par.model.Area;
+import com.htc.par.model.UserRole;
 import com.htc.par.model.ResponseException;
 
-	
-
 @Service
-public class AreaServiceImpl implements IAreaService{
+public class UserRoleServiceImpl implements IUserRoleService {
 
 	@Value("${ParServiceApiUrl}")
 	private String parServiceApiUrl;
@@ -27,20 +24,14 @@ public class AreaServiceImpl implements IAreaService{
 	@Autowired
 	RestTemplate restTemplate;
 	
-	
-	// Get all the areas from the area table
-
+	// Get all the user roles from the user role table
 	@Override
-	public List<Area> getAllAreas() throws Exception  {
+	public List<UserRole> getAllUserRoles() throws Exception {
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/area/getAreas";
+		String url = parServiceApiUrl + "/userrole/getUserRoles";
 		try {
-			ResponseEntity<List<Area>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Area>>() {});
-			List<Area> allAreas = response.getBody();
-			  for(Area area: allAreas) {
-				  area.setAreaActive(area.getAreaActive().equalsIgnoreCase("true") ? "Yes" : "No");
-			  }
-			  return allAreas;
+			ResponseEntity<List<UserRole>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<UserRole>>() {});
+			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
@@ -48,35 +39,32 @@ public class AreaServiceImpl implements IAreaService{
 		}
 	}
 
-    // Get the next area id from area sequence
+	// Get the next user role id  from the use role sequence
 	
 	@Override
-	public int getNextAreaId() throws Exception {
+	public int getNextUserRoleId() throws Exception {
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/area/getNextAreaId";
-		try {
+		String url = parServiceApiUrl + "/userrole/getNextUserRoleId";
+		try {			
 			ResponseEntity<Integer> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Integer>() {});
 			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
 			throw new Exception(responseException.getMessage());
-			
-		}
-		
+		}	
 	}
 
-	
-	// Delete the area from the area table
+	// Delete the use role from the user role table using the user role id
 	
 	@Override
-	public String deleteArea(int areaId) throws Exception {	
+	public String deleteUserRole(int userRoleId) throws Exception {
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/area/deleteArea/"+areaId ;
-		HttpEntity<Integer> request = new HttpEntity<>(areaId);
+		String url = parServiceApiUrl + "/userrole/deleteUserRole/"+userRoleId ;
+		HttpEntity<Integer> request = new HttpEntity<>(userRoleId);
 		try {
-		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
-		return response.getBody();
+			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
+			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);	
@@ -86,15 +74,12 @@ public class AreaServiceImpl implements IAreaService{
 		return responseException.getMessage();
 	}
 
-
-	// create the area  in the area table
-	
+	// Create the user role in the user role table
 	@Override
-	public String createArea(Area area) throws Exception {
+	public String createUserRole(UserRole userRole) throws Exception {
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/area/createArea";
-		area.setAreaActive(area.getAreaActive().equalsIgnoreCase("Yes") ? "true" : "false");
-		HttpEntity<Area> request = new HttpEntity<>(area);
+		String url = parServiceApiUrl + "/userrole/createUserRole";
+		HttpEntity<UserRole> request = new HttpEntity<>(userRole);
 		try { 
 			ResponseEntity<String> 	response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});							
 			return response.getBody();
@@ -105,22 +90,21 @@ public class AreaServiceImpl implements IAreaService{
 		return responseException.getMessage();
 	}
 
-	// update area in the area table
+	// update the user role in the user role table
 	
 	@Override
-	public String updateArea(Area area) throws Exception {
+	public String updateUserRole(UserRole userRole) throws Exception {
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/area/updateArea";
-		area.setAreaActive(area.getAreaActive().equalsIgnoreCase("Yes") ? "true" : "false");
-		HttpEntity<Area> request = new HttpEntity<>(area);
+		String url = parServiceApiUrl + "/userrole/updateUserRole";
+		System.out.println(userRole.toString());
+		HttpEntity<UserRole> request = new HttpEntity<>(userRole);
 		try {
-		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
-		return response.getBody();
+			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
+			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);	
-		}
-		
+		}		
 		return responseException.getMessage();
 	}
 

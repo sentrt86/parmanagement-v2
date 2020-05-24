@@ -10,7 +10,7 @@
 	<meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/> 
 	
-	<title>Area and Product</title>
+	<title>Candidate</title>
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="static/css/datatables.bootstrap4.min.css"> 
 	<!-- Par Management CSS -->
 	<link rel="stylesheet" href="static/css/common.css">
-	<link rel="stylesheet" href="static/css/area.css">		
+	<link rel="stylesheet" href="static/css/candidate.css">		
 	
 	<!-- JQuery -->
 	<script type="text/javascript" src="static/js/jquery.min.js"></script>
@@ -34,7 +34,7 @@
 	<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
 	<!-- Par Management Java Script -->
 	<script type="text/javascript" src="static/js/common.js"></script>
-	<script type="text/javascript" src="static/js/area.js"></script>
+	<script type="text/javascript" src="static/js/candidate.js"></script>
 </head>
 <body>
 		<!-- Page Header and Menu jsp -->
@@ -42,28 +42,34 @@
 	
 		<div class="main">
 			<div >
-				<h1 class="screen-title">Area / Product</h1>
+				<h1 class="screen-title">Candidate</h1>
 			</div>
 
 		    <div class="tablediv">
-		    	<table id="areaTable" class="table table-striped table-bordered" style="width:100%">
+		    	<table id="candidateTable" class="table table-striped table-bordered" style="width:160%">
 				     <thead>
 				         <tr>
-				             <th>Area Id</th>
-				             <th>Area Name</th>
+				             <th>Candidate Id</th>
+				             <th>Candidate Name</th>
+				             <th>Candidate Phone</th>
+				             <th>Candidate Email</th>
+				             <th>Skill Name</th>
 				             <th>Active</th>
 				             <th>Action</th>
 				         </tr>
 				     </thead>
 				     <tbody>
-				     	<c:forEach var="area" items="${allAreasList}">
+				     	<c:forEach var="candidate" items="${allCandidatesList}">
 				     		<tr>
-				     			<td>${area.areaId}</td>
-				     			<td>${area.areaName}</td>
-				     			<td>${area.areaActive}</td>
+				     			<td>${candidate.candidateId}</td>
+				     			<td>${candidate.candidateName}</td>
+				     			<td>${candidate.candidatePhoneNum}</td>
+				     			<td>${candidate.candidateEmailTxt}</td>
+				     			<td>${candidate.skill.skillName}</td>
+				     			<td>${candidate.candidateActive}</td>
 				     			<td>
-				     				<button type="button" class="btn btnAreaEdit btn-link" id="areaTableEdit-btn">Edit</button>/
-				     				<button type="button" class="btn btnAreaDelete btn-link" id="areaTableDelete-btn">Delete</button>
+				     				<button type="button" class="btn btnExternalStaffEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
+				     				<button type="button" class="btn btnExternalStaffDelete btn-link" id="candidateTableDelete-btn">Delete</button>
 				     			</td>
 				     		</tr>        		
 				     	</c:forEach>
@@ -71,7 +77,7 @@
 				</table>
 		   </div>
 		   	<div>
-				<button type="button" class="btn btn-primary btnAreaAdd" id="areaAdd-btn">Add Area</button>
+				<button type="button" class="btn btn-primary btnCandidateAdd" id="candidateAdd-btn">Add Candidate</button>
 			</div>
 		</div>
 		<footer class="footer">
@@ -79,8 +85,8 @@
 		</footer>
 		
 		
-		<!-- Delete Area Message Modal -->
-		<div class="modal fade" id="areaDeleteconfirmModal" tabindex="-1"
+		<!-- Delete ExternalStaff Message Modal -->
+		<div class="modal fade" id="candidateDeleteconfirmModal" tabindex="-1"
 			role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
@@ -92,25 +98,25 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<p id="areaDeleteconfirmModalBody"></p>
+						<p id="candidateDeleteconfirmModalBody"></p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="areaModalDelete-btn">Delete</button>
+						<button type="button" class="btn btn-primary" id="candidateModalDelete-btn">Delete</button>
 						<button type="button" class="btn btn-primary cancel"
 							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="areaModalDeleteAreaId"/>
+						<input type="hidden" id="candidateModalDeleteExternalStaffId"/>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<!-- Edit Area Message Modal -->
-		<div class="modal fade" id="areaEditModal" tabindex="-1"
+		<!-- Edit ExternalStaff Message Modal -->
+		<div class="modal fade" id="candidateEditModal" tabindex="-1"
 			role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="confirmModalLabel">Add / Update Area</h5>
+						<h5 class="modal-title" id="confirmModalLabel">Add / Update Candidate</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -118,16 +124,32 @@
 					<div class="modal-body">
 						<form class="form-horizontal">
 						  <div class="form-group">
-						    <label>Area Id</label>
-						    <input type="text" class="form-control" id="areaIdModal">
+						    <label>Candidate Id</label>
+						    <input type="text" class="form-control" id="candidateIdModal">
 						  </div>
 						  <div class="form-group">
-						    <label>Area Name</label>
-						    <input type="text" class="form-control" id="areaNameModal">
+						    <label>Candidate Name</label>
+						    <input type="text" class="form-control" id="candidateNameModal">
 						  </div> 
 						  <div class="form-group">
-						    <label>Area Active</label>
-							    <select class="form-control" id="areaActiveModal">
+						    <label>Candidate Phone</label>
+						    <input type="text" class="form-control" id="candidatePhoneModal">
+						  </div> 
+						  <div class="form-group">
+						    <label>Candidate Email</label>
+						    <input type="text" class="form-control" id="candidateEmailModal">
+						  </div> 
+						  <div class="form-group">
+						    <label>Area Name</label>
+							    <select class="form-control" id="candidateSkillModal">
+							     	<c:forEach var="skill" items="${allSkillsList}">
+						   				<option  value="${skill.skillId}" >${skill.skillName}</option>
+		        	   				</c:forEach>
+							    </select>
+						  </div>
+						  <div class="form-group">
+						    <label>Candidate Active</label>
+							    <select class="form-control" id="candidateActiveModal">
 							      <option value="Yes">Yes</option>
 							      <option value="No">No</option>
 							    </select>
@@ -135,10 +157,10 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="areaModalEdit-btn">Save</button>
+						<button type="button" class="btn btn-primary" id="candidateModalEdit-btn">Save</button>
 						<button type="button" class="btn btn-primary cancel"
 							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="areaModalProcess"/>
+						<input type="hidden" id="candidateModalProcess"/>
 					</div>
 				</div>
 			</div>

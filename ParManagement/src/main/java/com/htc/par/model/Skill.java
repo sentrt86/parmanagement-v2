@@ -5,14 +5,14 @@ public class Skill {
 	
 	private int skillId;
 	private String SkillName;
-	private boolean skillActive;
+	private String skillActive;
 	
 	
 	public Skill() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Skill(int skillId, String skillName, boolean skillActive) {
+	public Skill(int skillId, String skillName, String skillActive) {
 		super();
 		this.skillId = skillId;
 		SkillName = skillName;
@@ -30,10 +30,10 @@ public class Skill {
 	public void setSkillName(String skillName) {
 		SkillName = skillName;
 	}
-	public boolean isSkillActive() {
+	public String getSkillActive() {
 		return skillActive;
 	}
-	public void setSkillActive(boolean skillActive) {
+	public void setSkillActive(String skillActive) {
 		this.skillActive = skillActive;
 	}
 	@Override

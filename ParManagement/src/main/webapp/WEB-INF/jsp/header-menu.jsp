@@ -22,13 +22,13 @@
 		  </button>
 		  <div class="dropdown-container">
 		    <a href="./area">Area / Product</a>
-		    <a href="#">External Staffing</a>
-		    <a href="#">Role</a>
+		    <a href="./extStaff">External Staffing</a>
+		    <a href="./role">Role</a>
 		    <a href="./skill">Skill</a>
-		    <a href="#">Recruiter</a>
-		    <a href="#">Candidate</a>
+		    <a href="./recruiter">Recruiter</a>
+		    <a href="./candidate">Candidate</a>
 		    <a href="#">Pre Screener</a>
-		    <a href="#">User</a>
+		    <a href="./userrole">User</a>
 		    
 		  </div>
 		  <button class="dropdown-btn"><img src="static/images/fullfillment.png" width="13px" height="13px" />&nbsp;Par Fullfillment 

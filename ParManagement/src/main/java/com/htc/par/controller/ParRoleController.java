@@ -9,26 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.htc.par.service.AreaServiceImpl;
+import com.htc.par.service.ParRoleServiceImpl;
+
+
 
 @Controller
-public class HomeController {
-
+public class ParRoleController {
 
 	@Autowired
-	AreaServiceImpl areaServiceImpl;
+	ParRoleServiceImpl parRoleServiceImpl;
 	
-	
-	public static final String parServiceApiUrl = "http://localhost:8082/par/";
-	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public ModelAndView home(Locale locale,Model model) {
+	@RequestMapping(value="/role", method=RequestMethod.GET)
+	public ModelAndView parRole(Locale locale,Model model) {
 		ModelAndView modelView  = new ModelAndView();
-		modelView.setViewName("home");
+		modelView.addObject("allRolesList", parRoleServiceImpl.getAllParRoles());
+		modelView.setViewName("parrole");
 		return modelView;
 
 	}
-
-
-
 }

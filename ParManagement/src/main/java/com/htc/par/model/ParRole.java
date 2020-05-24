@@ -5,14 +5,14 @@ public class ParRole {
 	
 	private int roleId;
 	private String roleName;
-	private boolean roleActive;
+	private String roleActive;
 	
 	public ParRole() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ParRole(int roleId, String roleName, boolean roleActive) {
+	public ParRole(int roleId, String roleName, String roleActive) {
 		super();
 		this.roleId = roleId;
 		this.roleName = roleName;
@@ -35,11 +35,11 @@ public class ParRole {
 		this.roleName = roleName;
 	}
 
-	public boolean isRoleActive() {
+	public String getRoleActive() {
 		return roleActive;
 	}
 
-	public void setRoleActive(boolean roleActive) {
+	public void setRoleActive(String roleActive) {
 		this.roleActive = roleActive;
 	}
 

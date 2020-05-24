@@ -5,6 +5,8 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/> 
 	
 	<title>PAR Entry</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -70,7 +72,13 @@
 			  </div>
 			  <div class="row mt-3">
 			    <div class="col">
-			      <input type="text" class="form-control" id="areaProduct" placeholder="Enter Area/Product" name="areaProduct">
+			 <!--      <input type="text" class="form-control" id="areaProduct" placeholder="Enter Area/Product" name="areaProduct"> -->
+			      <select class="form-control input-small "  id="area"  placeholder="Enter Area/Product">
+			           <option value="" selected disabled hidden>Select Area Name</option>
+			       	   <c:forEach var="area" items="${allAreasList}">
+						   <option  value="${area.areaId}" >${area.areaName}</option>
+		        	   </c:forEach>
+				 </select>
 			    </div>
 			  </div>
 			  <div class="row mt-3">

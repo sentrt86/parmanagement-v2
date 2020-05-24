@@ -8,7 +8,7 @@
 	<meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/> 
 	
-	<title>Skill</title>
+	<title>Recruiter</title>
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,7 +22,7 @@
 	
 	<!-- Par Management CSS -->
 	<link rel="stylesheet" href="static/css/common.css">
-	<link rel="stylesheet" href="static/css/skill.css">		
+	<link rel="stylesheet" href="static/css/recruiter.css">		
 	
 	<!-- JQuery -->
 	<script type="text/javascript" src="static/js/jquery-3.5.1.js"></script>
@@ -33,7 +33,7 @@
 	<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
 	<!-- Par Management Java Script -->
 	<script type="text/javascript" src="static/js/common.js"></script>
-	<script type="text/javascript" src="static/js/skill.js"></script>
+	<script type="text/javascript" src="static/js/recruiter.js"></script>
 </head>
 <body>
 
@@ -43,27 +43,33 @@
 	
 		<div class="main">
 			<div >
-				<h1 class="screen-title">Skills</h1>
+				<h1 class="screen-title">Recruiter</h1>
 			</div>
 			<div class="tablediv">
-				<table id="skillTable" class="table table-striped table-bordered" style="width:100%">
+				<table id="recruiterTable" class="table table-striped table-bordered" style="width:160%;">
 			        <thead>
 			            <tr>
-			                <th>Skill Id</th>
-			                <th>Skill Name</th>
-			                <th>Skill Active</th>
-			                <th>Action</th>
+			                <th style="width:10%;">Recruiter Id</th>
+			                <th>Recruiter Name</th>
+			                <th>Phone No.</th>
+			                <th>Email</th>
+			                <th style="width:10%;">Email Flag</th>
+			                <th style="width:10%;">Active</th>
+			                <th style="width:13%;">Action</th>
 			            </tr>
 			        </thead>
 			        <tbody>
-				     	<c:forEach var="skill" items="${allSkillsList}">
+				     	<c:forEach var="recruiter" items="${allRecruitersList}">
 				     		<tr>
-				     			<td>${skill.skillId}</td>
-				     			<td>${skill.skillName}</td>
-				     			<td>${skill.skillActive}</td>
-				     			<td>
-				     				<button type="button" class="btn btnSkillEdit btn-link" id="skillDelete-btn">Edit</button>/
-				     				<button type="button" class="btn btnSkillDelete btn-link" id="skillDelete-btn">Delete</button>
+				     			<td style="width:10%;">${recruiter.recruiterId}</td>
+				     			<td>${recruiter.recruiterName}</td>
+				     			<td>${recruiter.recruiterPhoneNo}</td>
+				     			<td>${recruiter.recruiterEmail}</td>
+				     			<td style="width:10%;">${recruiter.recruiterEmailFlag}</td>
+				     			<td style="width:10%;">${recruiter.recruiterActive}</td>
+				     			<td style="width:13%;">
+				     				<button type="button" class="btn btnRecruiterEdit btn-link" id="recruiterDelete-btn">Edit</button>/
+				     				<button type="button" class="btn btnRecruiterDelete btn-link" id="recruiterDelete-btn">Delete</button>
 				     			</td>
 				     		</tr>        		
 				     	</c:forEach>
@@ -71,7 +77,7 @@
 			    </table>
 		    </div>
 		    <div>
-				<button type="button" class="btn btn-primary btnSkillAdd" id="skillAdd-btn">Add Skill</button>
+				<button type="button" class="btn btn-primary btnRecruiterAdd" id="recruiterAdd-btn">Add Role</button>
 			</div>
 		</div>		
 		<footer class="footer">
@@ -79,7 +85,7 @@
 		</footer>
 		
 		<!-- Delete Skill Message Modal -->
-		<div class="modal fade" id="skillDeleteconfirmModal" tabindex="-1"
+		<div class="modal fade" id="recruiterDeleteconfirmModal" tabindex="-1"
 			role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
@@ -91,25 +97,25 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<p id="skillDeleteconfirmModalBody"></p>
+						<p id="recruiterDeleteconfirmModalBody"></p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="skillDelete-btn">Delete</button>
+						<button type="button" class="btn btn-primary" id="recruiterDelete-btn">Delete</button>
 						<button type="button" class="btn btn-primary cancel"
 							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="skillModalDeleteSkillId"/>
+						<input type="hidden" id="recruiterModalDeleteSkillId"/>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<!-- Edit Skill Message Modal -->
-		<div class="modal fade" id="skillEditModal" tabindex="-1"
+		<div class="modal fade" id="recruiterEditModal" tabindex="-1"
 			role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="confirmModalLabel">Add / Update Skill</h5>
+						<h5 class="modal-title" id="confirmModalLabel">Add / Update Recruiter</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -117,16 +123,31 @@
 					<div class="modal-body">
 						<form class="form-horizontal">
 						  <div class="form-group">
-						    <label>Skill Id</label>
-						    <input type="text" class="form-control" id="skillIdModal" readonly>
+						    <label>Recruiter Id</label>
+						    <input type="text" class="form-control" id="recruiterIdModal" readonly>
 						  </div>
 						  <div class="form-group">
-						    <label>Skill Name</label>
-						    <input type="text" class="form-control" id="skillNameModal">
+						    <label>Recruiter Name</label>
+						    <input type="text" class="form-control" id="recruiterNameModal">
+						  </div>
+						  <div class="form-group">
+						    <label>Recruiter Phone</label>
+						    <input type="text" class="form-control" id="recruiterPhoneNoModal">
+						  </div>
+						  <div class="form-group">
+						    <label>Recruiter Email</label>
+						    <input type="text" class="form-control" id="recruiterEmailModal">
 						  </div> 
 						  <div class="form-group">
-						    <label>Skill Active</label>
-							    <select class="form-control" id="skillActiveModal">
+						    <label>Recruiter Email Flag</label>
+							    <select class="form-control" id="recruiterEmailFlagModal">
+							      <option>Yes</option>
+							      <option>No</option>
+							    </select>
+						  </div>
+						  <div class="form-group">
+						    <label>Recruiter Active</label>
+							    <select class="form-control" id="recruiterActiveModal">
 							      <option>Yes</option>
 							      <option>No</option>
 							    </select>
@@ -134,10 +155,10 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="skillSave-btn">Save</button>
+						<button type="button" class="btn btn-primary" id="recruiterSave-btn">Save</button>
 						<button type="button" class="btn btn-primary cancel"
 							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="skillModalProcess"/>
+						<input type="hidden" id="recruiterModalProcess"/>
 					</div>
 				</div>
 			</div>

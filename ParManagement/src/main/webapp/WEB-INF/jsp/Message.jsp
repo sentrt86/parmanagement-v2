@@ -1,19 +1,21 @@
 
 		<!-- Modal -->
-		<div id="myModalMessage" class="modal fade" role="dialog">
+		<div id="messageModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title" id="modaltitle"></h4>
+						<h5 class="modal-title" id="confirmModalLabel">Message</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 					<div class="modal-body">
-						<span id="spanmodelmsg"></span>
+						<span id="messageModalBody"></span>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal"
-							id="closemodelmsg">Close</button>
+						<button type="button" class="btn btn-primary"
+							id="messageClose-btn" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 
