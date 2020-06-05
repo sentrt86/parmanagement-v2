@@ -45,7 +45,7 @@
 			</div>
 
 		    <div class="tablediv">
-		    	<table id="userTable" class="table table-striped table-bordered" style="width:190%">
+		    	<table id="userTable" class="table table-striped table-bordered" style="width:250%">
 				     <thead>
 				         <tr>
 				             <th>User Id</th>

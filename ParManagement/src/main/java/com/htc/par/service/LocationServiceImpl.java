@@ -31,12 +31,8 @@ public class LocationServiceImpl implements ILocationService{
 		ResponseException responseException = null;
 		String url = parServiceApiUrl + "/location/getLocations";
 		try {
-			System.out.println("Get list all location method in service");
-			System.out.println("url:"+url);
-			
 			ResponseEntity<List<Location>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Location>>() {});
 			List<Location> allLocations = response.getBody();
-			System.out.println(response.getBody());
 			  for(Location location: allLocations) {
 				  location.setLocationActive(location.getLocationActive().equalsIgnoreCase("true") ? "Yes" : "No");
 			  }
@@ -53,12 +49,9 @@ public class LocationServiceImpl implements ILocationService{
 	@Override
 	public String createLocation(Location location) throws Exception {
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/location/addLocation";
+		String url = parServiceApiUrl + "/location/createLocation";
 		location.setLocationActive(location.getLocationActive().equalsIgnoreCase("Yes") ? "true" : "false");
 		HttpEntity<Location> request = new HttpEntity<>(location);
-		System.out.println("Location objects in firt service"+location);
-		System.out.println("request object in first service");
-		System.out.println(request);
 		try { 
 			ResponseEntity<String> 	response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});							
 			return response.getBody();
@@ -75,9 +68,6 @@ public class LocationServiceImpl implements ILocationService{
 		String url = parServiceApiUrl + "/location/updateLocation";
 		location.setLocationActive(location.getLocationActive().equalsIgnoreCase("Yes") ? "true" : "false");
 		HttpEntity<Location> request = new HttpEntity<>(location);
-		System.out.println("Location objects in update firt service"+location);
-		System.out.println("request object if first service");
-		System.out.println(request);
 		try { 
 			ResponseEntity<String> 	response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});							
 			return response.getBody();

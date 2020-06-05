@@ -32,8 +32,8 @@ public class LocationController {
 	@RequestMapping(value="/location",method=RequestMethod.GET)
 	public ModelAndView area(Locale locale,Model model)  throws Exception{ 	
 		ModelAndView  modelView = new ModelAndView();
-		List<Location> locations = locationServiceImpl.getallLocation();
-		modelView.addObject("alllocationList", locations);
+		List<Location> allLocationsList = locationServiceImpl.getallLocation();
+		modelView.addObject("allLocationsList", allLocationsList);
 		modelView.setViewName("location"); 
 		return modelView;
 		
@@ -48,7 +48,7 @@ public class LocationController {
 	
 	//Request handler to create the prescreener
 	
-	@RequestMapping(value="/addLocation", method=RequestMethod.POST) 
+	@RequestMapping(value="/createLocation", method=RequestMethod.POST) 
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public @ResponseBody String addLocation(@RequestBody String json,HttpServletRequest request) throws Exception { 		

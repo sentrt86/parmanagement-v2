@@ -31,12 +31,8 @@ public class PreScreenerServiceImpl implements IPreScreenerService {
 		ResponseException responseException = null;
 		String url = parServiceApiUrl + "/prescreener/getPrescreeners";
 		try {
-			System.out.println("Get list all prescreener method in service");
-			System.out.println("url:"+url);
-			
 			ResponseEntity<List<Prescreener>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Prescreener>>() {});
 			List<Prescreener> allPrescreeners = response.getBody();
-			System.out.println(response.getBody());
 			  for(Prescreener prescreener: allPrescreeners) {
 				  prescreener.setPreScreenerActive(prescreener.getPreScreenerActive().equalsIgnoreCase("true") ? "Yes" : "No");
 			  }
@@ -54,12 +50,9 @@ public class PreScreenerServiceImpl implements IPreScreenerService {
 	@Override
 	public String addPrescreener(Prescreener prescreener) throws Exception {
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/prescreener/addPrescreener";
+		String url = parServiceApiUrl + "/prescreener/createPrescreener";
 		prescreener.setPreScreenerActive(prescreener.getPreScreenerActive().equalsIgnoreCase("Yes") ? "true" : "false");
 		HttpEntity<Prescreener> request = new HttpEntity<>(prescreener);
-		System.out.println("prescrener objects in firt service"+prescreener);
-		System.out.println("request object if first service");
-		System.out.println(request);
 		try { 
 			ResponseEntity<String> 	response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});							
 			return response.getBody();
@@ -76,9 +69,6 @@ public class PreScreenerServiceImpl implements IPreScreenerService {
 		String url = parServiceApiUrl + "/prescreener/updatePrescreener";
 		prescreener.setPreScreenerActive(prescreener.getPreScreenerActive().equalsIgnoreCase("Yes") ? "true" : "false");
 		HttpEntity<Prescreener> request = new HttpEntity<>(prescreener);
-		System.out.println("first service of update method");
-		System.out.println(prescreener);
-		System.out.println("#####################");
 		try {
 		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
 		return response.getBody();
@@ -93,7 +83,6 @@ public class PreScreenerServiceImpl implements IPreScreenerService {
 	@Override
 	public String deletePrescreener(int prescreenerId) throws Exception {
 		ResponseException responseException = null;
-		System.out.println("delete method in service method"+prescreenerId);
 		String url = parServiceApiUrl + "/prescreener/deletePrescreener/"+prescreenerId ;
 		HttpEntity<Integer> request = new HttpEntity<>(prescreenerId);
 		try {
@@ -102,7 +91,6 @@ public class PreScreenerServiceImpl implements IPreScreenerService {
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);	
-			System.out.println("error:"+ responseException.getMessage());
 		}
 		
 		return responseException.getMessage();

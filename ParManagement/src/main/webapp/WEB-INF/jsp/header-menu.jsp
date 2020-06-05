@@ -32,8 +32,8 @@
 			    <a href="./skill">Skill</a>
 			    <a href="./recruiter">Recruiter</a>
 			    <a href="./candidate">Candidate</a>
-			    <a href="#">Pre Screener</a>
-			    <a href="#">Location</a>
+			    <a href="./prescreener">Pre Screener</a>
+			    <a href="./location">Location</a>
 			    <a href="./user">User</a>
 			    <a href="./userrole">User Role</a>
 		    

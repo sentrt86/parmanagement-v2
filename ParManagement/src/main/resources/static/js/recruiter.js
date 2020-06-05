@@ -83,7 +83,6 @@ $(document).ready(function() {
 			var process = $('#recruiterModalProcess').val();
 			var data = '{"recruiterId":"'+recruiterId+'","recruiterName":"'+recruiterName+'","recruiterPhoneNo":"'+recruiterPhoneNo+'","recruiterEmail":"'+recruiterEmail+'","recruiterEmailFlag":"'+recruiterEmailFlag+'","recruiterActive":"'+recruiterActive+'"}';
 	
-			alert(process);
 			if (process == 'recruiterAdd')
 			{
 				url = "./createRecruiter";

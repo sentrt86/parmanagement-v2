@@ -28,8 +28,8 @@ public class PreScreenerController {
 		@RequestMapping(value="/prescreener", method=RequestMethod.GET) 
 		public ModelAndView area(Locale locale,Model model)  throws Exception{ 	
 		ModelAndView  modelView = new ModelAndView();
-		List<Prescreener> prescreeners = prescreenerServiceImpl.getListAllPreScreener();
-		modelView.addObject("allPrescreenerList", prescreeners);
+		List<Prescreener> allPrescreenersList = prescreenerServiceImpl.getListAllPreScreener();
+		modelView.addObject("allPrescreenersList", allPrescreenersList );
 		modelView.setViewName("prescreener"); 
 		return modelView;
 	    }
@@ -43,7 +43,7 @@ public class PreScreenerController {
 		
 		//Request handler to create the prescreener
 		
-		@RequestMapping(value="/addPrescreener", method=RequestMethod.POST) 
+		@RequestMapping(value="/createPrescreener", method=RequestMethod.POST) 
 		@Produces(MediaType.TEXT_PLAIN)
 		@Consumes(MediaType.APPLICATION_JSON)
 		public @ResponseBody String addPrescreener(@RequestBody String json,HttpServletRequest request) throws Exception { 				
