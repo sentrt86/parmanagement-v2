@@ -72,7 +72,7 @@ public class AreaServiceImpl implements IAreaService{
 	@Override
 	public String deleteArea(int areaId) throws Exception {	
 		ResponseException responseException = null;
-		String url = parServiceApiUrl + "/area/deleteArea/"+areaId ;
+		String url = parServiceApiUrl + "/area/deleteArea/"+ areaId;
 		HttpEntity<Integer> request = new HttpEntity<>(areaId);
 		try {
 		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		

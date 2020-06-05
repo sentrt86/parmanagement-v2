@@ -10,7 +10,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body font-weight-light">
 						<span id="messageModalBody"></span>
 					</div>
 					<div class="modal-footer">

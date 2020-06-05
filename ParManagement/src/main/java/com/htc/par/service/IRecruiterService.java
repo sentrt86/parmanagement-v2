@@ -12,11 +12,11 @@ import com.htc.par.model.Recruiter;
 public interface IRecruiterService {
 	
 	
-	public List<Recruiter>  getAllRecruiters();
-	public int getNextRecruiterId();
-	public String deleteRecruiter(int recruiterId);
-	public String createRecruiter(Recruiter recruiter);
-	public String updateRecruiter(Recruiter recruiter);
+	public List<Recruiter>  getAllRecruiters() throws Exception;
+	public int getNextRecruiterId() throws Exception;
+	public String deleteRecruiter(int recruiterId) throws Exception;
+	public String createRecruiter(Recruiter recruiter) throws Exception;
+	public String updateRecruiter(Recruiter recruiter) throws Exception;
 	
 	
 

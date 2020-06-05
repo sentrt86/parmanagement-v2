@@ -14,7 +14,6 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	
 	<!--  Jquery CSS -->
 	<link rel="stylesheet" href="static/css/jquery-ui.min.css">
 	<link rel="stylesheet" href="static/css/jquery.dataTables.min.css">
@@ -26,12 +25,12 @@
 	<link rel="stylesheet" href="static/css/userrole.css">		
 	
 	<!-- JQuery -->
-	<script type="text/javascript" src="static/js/jquery.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="static/js/popper.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>	
 	<script type="text/javascript" src="static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
+	<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>
 	<!-- Par Management Java Script -->
 	<script type="text/javascript" src="static/js/common.js"></script>
 	<script type="text/javascript" src="static/js/userrole.js"></script>
@@ -114,22 +113,27 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal">
-						  <div class="form-group">
-						    <label>User Role Id</label>
-						    <input type="text" class="form-control" id="userRoleIdModal">
-						  </div>
-						  <div class="form-group">
-						    <label>User Role Name</label>
-						    <input type="text" class="form-control" id="userRoleNameModal" required>
-						  </div> 
+						<form class="container" novalidate=""  id="userRoleForm">
+						    <div class="form-group">
+						        <label class="form-control-label" for="inputSuccess1">User Role Id</label>
+						        <input type="text" class="form-control" name="userRoleIdModal" id="inputSuccess1" required>
+						        <div class="valid-feedback">Success!</div>
+						        <div class="invalid-feedback">Please enter the user role id</div>
+						    </div>
+						    <div class="form-group">
+						        <label class="form-control-label" for="inputSuccess2">User Role Name</label>
+						        <input type="text" class="form-control"  name="userRoleNameModal" required id="inputSuccess2">
+						        <div class="valid-feedback">Success!</div>
+						        <div class="invalid-feedback">Please enter the user role name</div>
+						    </div>
+							 <div class="modal-footer">
+								<button type="button" class="btn btn-primary" id="userRoleModalEdit-btn">Save</button>
+								<button type="button" class="btn btn-primary cancel"
+										data-dismiss="modal">Cancel</button>
+								<input type="hidden" id="userRoleModalProcess"/>
+							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="userRoleModalEdit-btn">Save</button>
-						<button type="button" class="btn btn-primary cancel"
-							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="userRoleModalProcess"/>
+						
 					</div>
 				</div>
 			</div>

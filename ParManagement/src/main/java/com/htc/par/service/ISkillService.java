@@ -6,10 +6,10 @@ import com.htc.par.model.Skill;
 
 public interface ISkillService {
 	
-	public List<Skill>  getAllSkills();
-	public int getNextSkillId();
-	public String deleteSkill(int skillId);
-	public String createSkill(Skill skill);
-	public String updateSkill(Skill skill);
+	public List<Skill>  getAllSkills() throws Exception;
+	public int getNextSkillId() throws Exception;
+	public String deleteSkill(int skillId) throws Exception;
+	public String createSkill(Skill skill) throws Exception;
+	public String updateSkill(Skill skill) throws Exception;
 
 }

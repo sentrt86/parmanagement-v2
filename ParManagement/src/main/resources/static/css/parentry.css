@@ -1,8 +1,10 @@
-.linebreak{
-	border: 2px solid #ffa500;	
+
+.col-sm{
+	border: none;
+	width:190px;;
 }
 
-.parentry-form{
-	margin-top: 50px;
-	
-}
+
+
+
+

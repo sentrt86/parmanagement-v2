@@ -4,7 +4,6 @@
 }
 
 
-
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding : 0px;
     margin-left: 0px;
@@ -29,16 +28,24 @@
   color:#0d223f !important;
 }
 
+.page-item.active .page-link {
+    background-color: white !important;
+    border-color: none;
+
+}
+.page-link {
+    color: white !important;
+   
+} 
+
 .btnUserRoleAdd{
 	margin-top: 10px;
 	margin-left: 15px;
 }
 
 
-.form-group .has-error .help-block {
-    display: block;
+
+.table {
+  border: none;
 }
 
-.form-group .help-block {
-  /*   display: none; */
-}

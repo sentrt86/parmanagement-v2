@@ -1,6 +1,7 @@
 package com.htc.par.controller;
 
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +42,7 @@ public class AreaController {
 	public ModelAndView area(Locale locale,Model model)  throws Exception{ 		
 		ModelAndView  modelView = new ModelAndView();
 		modelView.addObject("allAreasList", areaServiceImpl.getAllAreas());
+		modelView.addObject("username",HomeController.username);
 		modelView.setViewName("area"); 
 		return modelView;
 	}
@@ -58,8 +60,7 @@ public class AreaController {
 	@RequestMapping(value="/createArea", method=RequestMethod.POST) 
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public @ResponseBody String createArea(@RequestBody String json,HttpServletRequest request) throws Exception { 		
-		
+	public @ResponseBody String createArea(@RequestBody String json,HttpServletRequest request) throws Exception { 			
 		String data = null;
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -97,6 +98,14 @@ public class AreaController {
 	public @ResponseBody String deleteArea(@PathVariable("areaId") String areaId,HttpServletRequest request) throws NumberFormatException, Exception { 
 		String data = areaServiceImpl.deleteArea(Integer.parseInt(areaId));
 		return data;
+	}
+	
+	
+	//Request handler to get all the areas
+	@RequestMapping(value="/getAllAreas", method=RequestMethod.GET) 
+	@Produces(MediaType.TEXT_PLAIN)
+	public @ResponseBody List<Area> getAllAreas() throws NumberFormatException, Exception { 
+		return areaServiceImpl.getAllAreas();
 	}
 
 }

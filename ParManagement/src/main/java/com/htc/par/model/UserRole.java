@@ -1,6 +1,12 @@
 package com.htc.par.model;
 
-public class UserRole {
+import java.io.Serializable;
+
+public class UserRole implements Serializable{
+	
+	
+
+	private static final long serialVersionUID = 5829674111426717000L;
 	
 	
 	private int userRoleId;

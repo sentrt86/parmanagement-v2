@@ -1,6 +1,11 @@
 package com.htc.par.model;
 
-public class Skill {
+import java.io.Serializable;
+
+public class Skill implements Serializable {
+	
+
+	private static final long serialVersionUID = -976001832559615487L;
 	
 	
 	private int skillId;

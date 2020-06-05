@@ -1,7 +1,11 @@
 package com.htc.par.model;
 
-public class ParRole {
+import java.io.Serializable;
+
+public class ParRole  implements Serializable{
 	
+
+	private static final long serialVersionUID = 1882681046914897919L;
 	
 	private int roleId;
 	private String roleName;

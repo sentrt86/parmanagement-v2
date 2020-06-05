@@ -3,8 +3,6 @@
 	font-size: 15px;
 }
 
-
-
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding : 0px;
     margin-left: 0px;
@@ -29,7 +27,21 @@
   color:#0d223f !important;
 }
 
+.page-item.active .page-link {
+    background-color: white !important;
+    border-color: none;
+
+}
+.page-link {
+    color: white !important;
+   
+} 
+
 .btnParRoleAdd{
 	margin-top: 10px;
 	margin-left: 15px;
+}
+
+.table {
+  border: none;
 }

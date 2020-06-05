@@ -21,11 +21,16 @@ $(document).ready(function() {
 
 	$('#candidateAdd-btn').click(function(){
 		$.getJSON('nextCandidateId', function (data) {
-			$('#candidateIdModal').prop("readonly", true);
-			$('#candidateIdModal').val(data);
-			$("#candidateNameModal").val(" ");
+			$('[name="candidateIdModal"]').prop("readonly", true);
+			$('[name="candidateIdModal"]').val(data);
 		});
+		$('[name="candidateNameModal"]').val("");
+		$('[name="candidatePhoneNumModal"]').val("");
+		$('[name="candidateEmailTxtModal"]').val("");
+		$('[name="candidateReceivedDateModal"]').val("");
 		$('#candidateModalProcess').val("candidateAdd");
+		$('#candidateForm').removeClass('was-validated');
+		getAllSkills("");
 		$('#candidateEditModal').modal('show');
 	}); 
 
@@ -38,7 +43,7 @@ $(document).ready(function() {
 		var table = $("#candidateTable").DataTable();
 		var candidate = table.row($(this).closest('tr')).data();			
 		$('#candidateDeleteconfirmModalBody').html("Are you sure you, want to delete candidate <strong> "+candidate[1]+" <strong> ?");
-		$('#candidateModalDeleteCandidateid').val(candidate[0]);
+		$('#candidateModalDeleteCandidateId').val(candidate[0]);
 		$('#candidateDeleteconfirmModal').modal('show');		
 
 	});
@@ -46,17 +51,20 @@ $(document).ready(function() {
 	/* To display the candidate update  pop modal */
 
 	$("#candidateTable tbody").on('click', '.btnCandidateEdit', function () {
+		$('#candidateForm').removeClass('was-validated');
 		var table = $("#candidateTable").DataTable();
 		var candidate = table.row($(this).closest('tr')).data();	
-		alert(candidate[2]);
 		$('#candidateModalProcess').val("candidateEdit");
-		$('#candidateIdModal').prop("readonly", true);
-		$('#candidateIdModal').val(candidate[0]);
-		$('#candidateNameModal').val(candidate[1]);
-		$('#candidatePhoneModal').val(candidate[2]);
-		$('#candidateEmailModal').val(candidate[3]);
-		$('#candidateSkillModal').val(candidate[4]).attr("selected", "selected");;
-		$('#candidateActiveModal').val(candidate[5]);
+		$('[name="candidateIdModal"]').prop("readonly", true);
+		$('[name="candidateIdModal"]').val(candidate[0]);
+		$('[name="candidateNameModal"]').val(candidate[1]);
+		$('[name="candidatePhoneNumModal"]').val(candidate[2]);
+		$('[name="candidateEmailTxtModal"]').val(candidate[3]);
+		
+		alert(candidate[4]);
+		$('[name="candidateReceivedDateModal"]').val('01-01-2020');
+		getAllSkills(candidate[5]);
+		$('[name="candidateActiveModal"]').val(candidate[6]);
 		$('#candidateEditModal').modal('show');		
 
 	});
@@ -64,40 +72,64 @@ $(document).ready(function() {
 	/* Performs the functionality of adding or updating the candidate informations */
 
 	$('#candidateModalEdit-btn').click(function() {
-		var url;
-		var candidateId = $('#candidateIdModal').val();
-		var candidateName = $('#candidateNameModal').val();
-		var candidateActive = $('#candidateActiveModal :selected').val();
-		var process = $('#candidateModalProcess').val();
-		var data = '{"candidateId":"'+candidateId+'","candidateName":"'+candidateName+'","candidateActive":"'+candidateActive+'"}';
+		
+		// Fetch form to apply custom Bootstrap validation
+		
+		var url="";
+		var isValid = $('#candidateForm')[0].checkValidity();
 
-		alert(process);
-		if (process == 'candidateAdd')
+		if (!isValid) 
 		{
-			url = "./createCandidate";
-		}
-		else
-		{
-			url="./updateCandidate";
+			event.preventDefault();
+			event.stopPropagation();
 		}
 
-		alert(url);
-		$.ajax({
-			type:"POST",
-			dataType:"text",
-			contentType: "application/json",
-			url:url,
-			data: data,
-			success:function(data){
-				$('#candidateEditModal').modal('hide');	
-				$('#messageModalBody').html(data);
-				$('#messageModal').modal('show');  				
-			},
-			error:function(req, status, error)
+		$('#candidateForm').addClass('was-validated');
+		
+		alert(isValid);
+
+		if (isValid)
+		{
+			var candidateId = $('[name="candidateIdModal"]').val();
+			var candidateName = $('[name="candidateNameModal"]').val();
+			var candidatePhoneNum = $('[name="candidatePhoneNumModal"]').val();
+			var candidateEmailTxt = $('[name="candidateEmailTxtModal"]').val();
+			var candidateReceivedDate = $('[name="candidateReceivedDateModal"]').val();
+			var skillId = $('[name="candidateSkillNameModal"]').val();
+			var candidateActive = $('[name="candidateActiveModal"] :selected').val();
+			var process = $('#candidateModalProcess').val();
+			var data = '{"candidateId":"'+candidateId+'","candidateName":"'+candidateName+'","candidatePhoneNum":"'+candidatePhoneNum+'","candidateEmailTxt":"'+candidateEmailTxt+'","candidateReceivedDate":"'+candidateReceivedDate+'","candidateActive":"'+candidateActive+'","skillId":"'+skillId+'"}';
+	
+			alert(data);
+			alert(process);
+			
+			if (process == 'candidateAdd')
 			{
-				console.log(status,error);
-			}	
-		});
+				url = "./createCandidate";
+			}
+			else
+			{
+				url="./updateCandidate";
+			}
+	
+			alert(url);
+			$.ajax({
+				type:"POST",
+				dataType:"text",
+				contentType: "application/json",
+				url:url,
+				data: data,
+				success:function(data){
+					$('#candidateEditModal').modal('hide');	
+					$('#messageModalBody').html(data);
+					$('#messageModal').modal('show');  				
+				},
+				error:function(req, status, error)
+				{
+					console.log(status,error);
+				}	
+			});
+		 }
 
 	});
 
@@ -112,6 +144,8 @@ $(document).ready(function() {
 	$('#candidateModalDelete-btn').click(function(){
 		$('#candidateDeleteconfirmModal').modal('hide');
 		var candidateId= $('#candidateModalDeleteCandidateId').val();
+		
+		alert(candidateId);
 		$.ajax({
 			type:"POST",
 			dataType:"text",
@@ -131,7 +165,39 @@ $(document).ready(function() {
 	});
 
 
+	/*  Function to get all skills and populate the drop down */
 
+	function getAllSkills(skillName) {
+		
+		$.ajax({
+			type:"GET",
+			dataType:"text",
+			contentType: "text/plain",
+			url:"./getAllSkills",
+			data: "",
+			success:function(data){
+				$('[name="candidateSkillNameModal"]').empty();
+				var skillDropDown = $('[name="candidateSkillNameModal"]'); 
+				
+				var jsonObj = JSON.parse(data);
+				$.each(jsonObj, function() {
+					if (skillName == this.skillName){
+						skillDropDown.append($("<option  selected/>").val(this.skillId).text(this.skillName));
+					}
+					else
+					{
+						skillDropDown.append($("<option />").val(this.skillId).text(this.skillName));
+					}
+				    
+				});
+			},
+			error:function(req, status, error)
+			{
+				console.log(status,error);
+			}	
+		});
+		
+	}
 
 
 } );

@@ -1,6 +1,8 @@
 
 body {
- font-family: 'Roboto', sans-serif;
+ /* font-family: 'Roboto', sans-serif; */
+ font-family:Roboto; 
+ font-weight:100;
  overflow-x: hidden;
 }
 
@@ -14,8 +16,9 @@ body {
   background-color: #0d223f;
   overflow-x: hidden;
   padding-top: 20px;
-  height: 670px; 
+  height: 710px; 
   overflow-y:auto;
+  border:none;
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -40,6 +43,7 @@ body {
 .sidenav a:hover, .dropdown-btn:hover {
  /*  color: #f1f1f1; */
   color:#808080;
+  border:none;
 }
 
 /* Main content */
@@ -60,6 +64,7 @@ body {
   display: none;
   background-color: #0d223f;
   padding-left: 8px;
+  border:none;
 }
 
 /* Optional: Style the caret down icon */
@@ -85,6 +90,7 @@ body {
 
 
 .header {
+	display: inline-block;
 	padding: 20px;
     height:80px;
     width: 100%;
@@ -111,22 +117,25 @@ body {
 
 .header_right{
 	display: block;
+	float:right;
     flex-grow: 10;
     position:relative;
+    padding-top:50px;
+    color:#0d223f;
 }
 
-.username{
-	float:right;
-	margin-top:40px;
-	margin-right:40px;
-	width:300px;
-	text-align: right;
+.btn-link,.btn-link:hover{
+ background-color: none;
+ text-decoration: none;
+ color:#ff5000;
 	
 }
 
-.logout{
-	 float: right;
-	 margin-top: 40px;
+.logout:hover{
+	background-color:#ff5000;
+	border-radius:0px;
+	color:white;
+	
 }
 
 .footer {
@@ -139,18 +148,72 @@ body {
 }
 
 .screen-title{
-	padding-top: 20px;
+	padding-top: 10px;
 	text-align: center;
 	font-size:30px;
 }
 
 .btn-primary{
-	background-color:#0d223f;
+	/* background-color:#0d223f; */
+	background-color:#ff5000;
 	border:none;
 }
 
 .btn-primary:hover{
-	background-color:#0d223f;
+	/* background-color:#0d223f; */
+	background-color:#ff5000;
 	border:none;
 	outline:none;
+}
+
+.username,.username:hover{
+	 color:#0d223f;
+	
+}
+
+.tablediv{
+	margin-top: 30px;
+	font-size: 15px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding : 0px;
+    margin-left: 0px;
+    display: inline;
+    border: 0px;
+    background:none;
+    
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {  
+  background: none;
+  border: none;
+
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+	
+  background: none;
+  color: #0d223f !important;
+}
+
+.pagination>li>a, .pagination>li>span{
+  color:#0d223f !important;
+}
+
+.page-item.active .page-link {
+    background-color: white !important;
+    border-color: none;
+
+
+}
+
+.page-link {
+    color: white !important;
+
+} 
+
+
+.table {
+  border: none;
 }

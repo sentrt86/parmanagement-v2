@@ -10,10 +10,10 @@ import com.htc.par.model.ParRole;
 public interface IParRoleService {
 	
 
-	public List<ParRole>  getAllParRoles();
-	public int getNextParroleId();
-	public String deleteParRole(int parRoleId);
-	public String createParRole(ParRole parRole);
-	public String updateParRole(ParRole parRole);
+	public List<ParRole>  getAllParRoles() throws Exception;
+	public int getNextParRoleId() throws Exception;
+	public String deleteParRole(int parRoleId) throws Exception;
+	public String createParRole(ParRole parRole) throws Exception;
+	public String updateParRole(ParRole parRole) throws Exception;
 
 }

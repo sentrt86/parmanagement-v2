@@ -1,5 +1,6 @@
 package com.htc.par.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ public class UserRoleController {
 	public ModelAndView userRole(Locale locale,Model model)  throws Exception{ 		
 		ModelAndView  modelView = new ModelAndView();
 		modelView.addObject("allUserRolesList", userRoleServiceImpl.getAllUserRoles());
+		modelView.addObject("username",HomeController.username);
 		modelView.setViewName("userrole"); 
 		return modelView;
 	}
@@ -93,5 +95,13 @@ public class UserRoleController {
 		String data = userRoleServiceImpl.deleteUserRole(Integer.parseInt(userRoleId));
 		return data;
 	}
+	
+	
+	//Request handler to get all the user roles
+		@RequestMapping(value="/getAllUserRoles", method=RequestMethod.GET) 
+		@Produces(MediaType.TEXT_PLAIN)
+		public @ResponseBody List<UserRole> getAllUserRoles() throws NumberFormatException, Exception { 
+			return userRoleServiceImpl.getAllUserRoles();
+		}
 
 }

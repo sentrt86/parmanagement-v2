@@ -25,9 +25,8 @@
 	<link rel="stylesheet" href="static/css/candidate.css">		
 	
 	<!-- JQuery -->
-	<script type="text/javascript" src="static/js/jquery.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery-3.5.1.js"></script>
-
+    <script type="text/javascript" src="static/js/popper.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>	
 	<script type="text/javascript" src="static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
@@ -53,6 +52,7 @@
 				             <th>Candidate Name</th>
 				             <th>Candidate Phone</th>
 				             <th>Candidate Email</th>
+				             <th>Candidate Received Date</th>
 				             <th>Skill Name</th>
 				             <th>Active</th>
 				             <th>Action</th>
@@ -65,11 +65,12 @@
 				     			<td>${candidate.candidateName}</td>
 				     			<td>${candidate.candidatePhoneNum}</td>
 				     			<td>${candidate.candidateEmailTxt}</td>
+				     			<td>${candidate.candidateReceivedDate}</td>
 				     			<td>${candidate.skill.skillName}</td>
 				     			<td>${candidate.candidateActive}</td>
 				     			<td>
-				     				<button type="button" class="btn btnExternalStaffEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-				     				<button type="button" class="btn btnExternalStaffDelete btn-link" id="candidateTableDelete-btn">Delete</button>
+				     				<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
+				     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
 				     			</td>
 				     		</tr>        		
 				     	</c:forEach>
@@ -104,7 +105,7 @@
 						<button type="button" class="btn btn-primary" id="candidateModalDelete-btn">Delete</button>
 						<button type="button" class="btn btn-primary cancel"
 							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="candidateModalDeleteExternalStaffId"/>
+						<input type="hidden" id="candidateModalDeleteCandidateId"/>
 					</div>
 				</div>
 			</div>
@@ -122,45 +123,60 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal">
-						  <div class="form-group">
-						    <label>Candidate Id</label>
-						    <input type="text" class="form-control" id="candidateIdModal">
-						  </div>
-						  <div class="form-group">
-						    <label>Candidate Name</label>
-						    <input type="text" class="form-control" id="candidateNameModal">
-						  </div> 
-						  <div class="form-group">
-						    <label>Candidate Phone</label>
-						    <input type="text" class="form-control" id="candidatePhoneModal">
-						  </div> 
-						  <div class="form-group">
-						    <label>Candidate Email</label>
-						    <input type="text" class="form-control" id="candidateEmailModal">
-						  </div> 
-						  <div class="form-group">
-						    <label>Area Name</label>
-							    <select class="form-control" id="candidateSkillModal">
-							     	<c:forEach var="skill" items="${allSkillsList}">
-						   				<option  value="${skill.skillId}" >${skill.skillName}</option>
-		        	   				</c:forEach>
-							    </select>
-						  </div>
-						  <div class="form-group">
-						    <label>Candidate Active</label>
-							    <select class="form-control" id="candidateActiveModal">
-							      <option value="Yes">Yes</option>
-							      <option value="No">No</option>
-							    </select>
-						  </div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="candidateModalEdit-btn">Save</button>
-						<button type="button" class="btn btn-primary cancel"
-							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="candidateModalProcess"/>
+						<form class="container" novalidate=""  id="candidateForm">
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess1">Candidate Id</label>
+							        <input type="text" class="form-control" name="candidateIdModal" id="inputSuccess1" required>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the candidate id</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess2">Candidate Name</label>
+							        <input type="text" class="form-control"  name="candidateNameModal" required id="inputSuccess2">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the candidate name</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess3">Candidate Phone</label>
+							        <input type="text" class="form-control"  name="candidatePhoneNumModal" required id="inputSuccess3">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the candidate phone</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess4">Candidate Email</label>
+							        <input type="text" class="form-control"  name="candidateEmailTxtModal" required id="inputSuccess4">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the candidate Email</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess5">Candidate Received Date</label>
+							        <input type="date" class="form-control"  name="candidateReceivedDateModal" required id="inputSuccess5">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the candidate received date</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess6">Skill Name</label>
+							        <select class="form-control" name="candidateSkillNameModal" required id="inputSuccess6">
+								    </select>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the Skill Name</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess7">Candidate Active</label>
+							        <select class="form-control" name="candidateActiveModal" required id="inputSuccess7">
+								      <option value="Yes">Yes</option>
+								      <option value="No">No</option>
+								    </select>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the area active yes or no</div>
+							    </div>
+								 <div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="candidateModalEdit-btn">Save</button>
+									<button type="button" class="btn btn-primary cancel"
+											data-dismiss="modal">Cancel</button>
+									<input type="hidden" id="candidateModalProcess"/>
+								</div>
+							</form>
 					</div>
 				</div>
 			</div>

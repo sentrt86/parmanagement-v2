@@ -1,0 +1,57 @@
+.header{
+	display:inline-block;
+}
+
+.htc_p3_logo {
+	width:358px;
+	height:60px;
+}
+
+.logo {
+	float: left;
+	position: relative;	
+}
+
+.login_header_title{
+	float:right;
+	text-align: right;
+}
+
+
+
+.center {
+  text-align: center;
+  position: relative;
+  margin-top:150px;
+  margin-right: 30px;
+  
+}
+
+
+.btn {
+	background-color: #ff5000;
+	color: #fff;
+	font-family: 'arial';
+	font-size: 17px;
+	border: none;
+	width:80px;
+}
+
+.btn:hover, .btn:focus, .btn:active {
+	color: #ff5000;
+	background-color: #fbe7de;
+	border: none;
+}
+
+
+.container{
+	width: 350px;
+	background-color: #d9d9d9;
+	border-radius: 6px;
+	height: 300px;
+	
+}
+.userlogin{
+	padding-top:35px;
+}
+

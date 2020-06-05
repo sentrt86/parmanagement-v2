@@ -1,0 +1,18 @@
+
+.sidenav {
+ min-height: 880px;
+ max-height:880px;
+ position: absolute;
+}
+
+.tablediv{
+	
+	height:427px;
+}
+
+.footer {
+
+    position: relative;
+    padding-top:7px;
+
+}

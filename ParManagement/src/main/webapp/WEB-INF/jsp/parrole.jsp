@@ -1,47 +1,45 @@
-<!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="_csrf" content="${_csrf.token}"/>
-    <meta name="_csrf_header" content="${_csrf.headerName}"/> 
+	<!-- <!DOCTYPE html> -->
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+	<%@ page session="false" %>
+	<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="_csrf" content="${_csrf.token}"/>
+	    <meta name="_csrf_header" content="${_csrf.headerName}"/> 
+		
+		<title>Par Role</title>
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		<!--  Jquery CSS -->
+		<link rel="stylesheet" href="static/css/jquery-ui.min.css">
+		<link rel="stylesheet" href="static/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="static/css/bootstrap.css">
+		<link rel="stylesheet" href="static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/css/datatables.bootstrap4.min.css"> 
+		<!-- Par Management CSS -->
+		<link rel="stylesheet" href="static/css/common.css">
+		<link rel="stylesheet" href="static/css/parrole.css">		
+		
+		<!-- JQuery -->
+		<script type="text/javascript" src="static/js/jquery-3.5.1.js"></script>
+		<script type="text/javascript" src="static/js/popper.min.js"></script>
 	
-	<title>Par Role</title>
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<!--  Jquery CSS -->
-	<link rel="stylesheet" href="static/css/jquery-ui.min.css">
-	<link rel="stylesheet" href="static/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" href="static/css/bootstrap.css">
-	<link rel="stylesheet" href="static/css/bootstrap.min.css">
-	<link rel="stylesheet" href="static/css/datatables.bootstrap4.min.css"> 
-	
-	<!-- Par Management CSS -->
-	<link rel="stylesheet" href="static/css/common.css">
-	<link rel="stylesheet" href="static/css/parrole.css">		
-	
-	<!-- JQuery -->
-	<script type="text/javascript" src="static/js/jquery-3.5.1.js"></script>
-	<script type="text/javascript" src="static/js/jquery.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>	
-	<script type="text/javascript" src="static/js/bootstrap.js"></script>
-	<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
-	<!-- Par Management Java Script -->
-	<script type="text/javascript" src="static/js/common.js"></script>
-	<script type="text/javascript" src="static/js/parrole.js"></script>
-</head>
-<body>
-
-		<!-- Page Header and Menu jsp -->
-		<jsp:include page="header-menu.jsp" />
-	
-	
-		<div class="main">
+		<script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>	
+		<script type="text/javascript" src="static/js/bootstrap.js"></script>
+		<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
+		<!-- Par Management Java Script -->
+		<script type="text/javascript" src="static/js/common.js"></script>
+		<script type="text/javascript" src="static/js/parrole.js"></script>
+	</head>
+	<body>
+			<!-- Page Header and Menu jsp -->
+			<jsp:include page="header-menu.jsp" />
+			<div class="main">
 			<div >
 				<h1 class="screen-title">Par Role</h1>
 			</div>
@@ -94,10 +92,10 @@
 						<p id="parRoleDeleteconfirmModalBody"></p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="parRoleDelete-btn">Delete</button>
+						<button type="button" class="btn btn-primary" id="parRoleModalDelete-btn">Delete</button>
 						<button type="button" class="btn btn-primary cancel"
 							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="parRoleModalDeleteSkillId"/>
+						<input type="hidden" id="parRoleModalDeleteParRoleId"/>
 					</div>
 				</div>
 			</div>
@@ -115,37 +113,42 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal">
-						  <div class="form-group">
-						    <label>Role Id</label>
-						    <input type="text" class="form-control" id="parRoleIdModal" readonly>
-						  </div>
-						  <div class="form-group">
-						    <label>Role Name</label>
-						    <input type="text" class="form-control" id="parRoleNameModal">
-						  </div> 
-						  <div class="form-group">
-						    <label>Role Active</label>
-							    <select class="form-control" id="parRoleActiveModal">
-							      <option>Yes</option>
-							      <option>No</option>
-							    </select>
-						  </div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="parRoleSave-btn">Save</button>
-						<button type="button" class="btn btn-primary cancel"
-							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="parRoleModalProcess"/>
+						<form class="container" novalidate=""  id="parRoleForm">
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess1">Role Id</label>
+							        <input type="text" class="form-control" name="parRoleIdModal" id="inputSuccess1" required>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the role id</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess2">Role Name</label>
+							        <input type="text" class="form-control"  name="parRoleNameModal" required id="inputSuccess2">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the role name</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess2">Role Active</label>
+							        <select class="form-control" name="parRoleActiveModal" required id="inputSuccess3">
+								      <option value="Yes">Yes</option>
+								      <option value="No">No</option>
+								    </select>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the role active yes or no</div>
+							    </div>
+								 <div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="parRoleModalEdit-btn">Save</button>
+									<button type="button" class="btn btn-primary cancel"
+											data-dismiss="modal">Cancel</button>
+									<input type="hidden" id="parRoleModalProcess"/>
+								</div>
+							</form>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<!-- Message Modal -->
-		<jsp:include page="Message.jsp" />
-		
-</body>
-</html> 
+		<jsp:include page="Message.jsp" />		
 
+	</body>
+	</html>

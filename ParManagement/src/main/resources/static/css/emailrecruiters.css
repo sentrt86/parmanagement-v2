@@ -1,0 +1,10 @@
+
+.sidenav {
+ height:910px;
+ position: absolute;
+}
+
+.footer {
+  position:relative;
+  padding-top:31px;          /* Footer height */
+}

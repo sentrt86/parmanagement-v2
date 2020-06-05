@@ -1,6 +1,11 @@
 package com.htc.par.model;
 
-public class Area {
+import java.io.Serializable;
+
+public class Area  implements Serializable {
+	
+
+	private static final long serialVersionUID = 5827424856206703745L;
 	
 	private int areaId;
 	private String areaName;

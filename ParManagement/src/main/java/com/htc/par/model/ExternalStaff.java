@@ -1,6 +1,11 @@
 package com.htc.par.model;
 
-public class ExternalStaff {
+import java.io.Serializable;
+
+public class ExternalStaff implements Serializable {
+	
+
+	private static final long serialVersionUID = -6866149513123589857L;
 	
 	private int extStaffId;
 	private String extStaffName;

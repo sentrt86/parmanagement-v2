@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
+	
+	
 	$(function () {
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
@@ -19,24 +20,25 @@ $(document).ready(function() {
 	/* To get the next userRole id and display in the add pop modal */
 
 	$('#userRoleAdd-btn').click(function(){
-		$("#userRoleIdModal").val(" ");
+		$('#userRoleForm').removeClass('was-validated');
+		$("#userRoleIdModal").val("");
 		$.getJSON('nextUserRoleId', function (data) {
-			$('#userRoleIdModal').prop("readonly", true);
-			$('#userRoleIdModal').val(data);
-			
+			$('[name="userRoleIdModal"]').prop("readonly", true);
+			$('[name="userRoleIdModal"]').val(data);
+
 		});
-		$("#userRoleNameModal").val(" ");
-		$('#userRoleModalProcess').val("userRoleAdd");
+		$('[name="userRoleNameModal"]').val("");
+		$('#userRoleModalProcess').val("userRoleAdd");		
 		$('#userRoleEditModal').modal('show');
 	}); 
 
-	
+
 	/* To display the userRole delete confirmation pop modal  */
 
 	$("#userRoleTable tbody").on('click', '.btnUserRoleDelete', function () {
 		var table = $("#userRoleTable").DataTable();
 		var userRole = table.row($(this).closest('tr')).data();			
-		$('#userRoleDeleteconfirmModalBody').html("Are you sure you, want to delete userRole <strong> "+userRole[1]+" <strong> ?");
+		$('#userRoleDeleteconfirmModalBody').html("Are you sure you, want to delete User Role : <strong> "+userRole[1]+" <strong> ?");
 		$('#userRoleModalDeleteUserRoleId').val(userRole[0]);
 		$('#userRoleDeleteconfirmModal').modal('show');		
 
@@ -45,57 +47,69 @@ $(document).ready(function() {
 	/* To display the userRole update  pop modal */
 
 	$("#userRoleTable tbody").on('click', '.btnUserRoleEdit', function () {
+		
 		var table = $("#userRoleTable").DataTable();
-		var userRole = table.row($(this).closest('tr')).data();	
+		var userRole = table.row($(this).closest('tr')).data();
+		$('#userRoleForm').removeClass('was-validated');
 		$('#userRoleModalProcess').val("userRoleEdit");
-		$('#userRoleIdModal').prop("readonly", true);
-		$('#userRoleIdModal').val(userRole[0]);
-		$('#userRoleNameModal').val(userRole[1]);
-		$('#userRoleNameModal').closest('.form-group').addClass('has-error');
+		$('[name="userRoleIdModal"]').prop("readonly", true);
+		$('[name="userRoleIdModal"]').val(userRole[0]);
+		$('[name="userRoleNameModal"]').val(userRole[1]);
 		$('#userRoleEditModal').modal('show');		
 
 	});
 
 	/* Performs the functionality of adding or updating the userRole informations */
 
-	$('#userRoleModalEdit-btn').click(function() {
-		var url;
-		
-		
-	/*    $('#textteamname').closest('.form-group').removeClass('has-success');*/
-	      
-		var userRoleId = $('#userRoleIdModal').val();
-		var userRoleName = $('#userRoleNameModal').val();
-		var process = $('#userRoleModalProcess').val();
-		var data = '{"userRoleId":"'+userRoleId+'","userRoleName":"'+userRoleName+'"}';
+	$('#userRoleModalEdit-btn').click(function(event) {
 
-		if (process == 'userRoleAdd')
+		// Fetch form to apply custom Bootstrap validation
+		var url="";
+		var isValid = $('#userRoleForm')[0].checkValidity();
+
+		if (!isValid) 
 		{
-			url = "./createUserRole";
-		}
-		else
-		{
-			url="./updateUserRole";
+			event.preventDefault();
+			event.stopPropagation();
 		}
 
-		$.ajax({
-			type:"POST",
-			dataType:"text",
-			contentType: "application/json",
-			url:url,
-			data: data,
-			success:function(data){
-				$('#userRoleEditModal').modal('hide');	
-				$('#messageModalBody').html(data);
-				$('#messageModal').modal('show');  				
-			},
-			error:function(req, status, error)
+		$('#userRoleForm').addClass('was-validated');
+
+		if (isValid)
+		{	   
+			var userRoleId = $('[name="userRoleIdModal"]').val();
+			var userRoleName = $('[name="userRoleNameModal"]').val();
+			var process = $('#userRoleModalProcess').val();
+			var data = '{"userRoleId":"'+userRoleId+'","userRoleName":"'+userRoleName+'"}';
+
+			if (process == 'userRoleAdd')
 			{
-				
-				console.log(req.responseText);
-				console.log(status,error);
-			}	
-		});
+				url = "./createUserRole";
+			}
+			else
+			{
+				url="./updateUserRole";
+			}
+
+			$.ajax({
+				type:"POST",
+				dataType:"text",
+				contentType: "application/json",
+				url:url,
+				data: data,
+				success:function(data){
+					$('#userRoleEditModal').modal('hide');	
+					$('#messageModalBody').html(data);
+					$('#messageModal').modal('show');  				
+				},
+				error:function(req, status, error)
+				{
+
+					console.log(req.responseText);
+					console.log(status,error);
+				}	
+			});
+		}
 
 	});
 
@@ -110,7 +124,6 @@ $(document).ready(function() {
 	$('#userRoleModalDelete-btn').click(function(){
 		$('#userRoleDeleteconfirmModal').modal('hide');
 		var userRoleId= $('#userRoleModalDeleteUserRoleId').val();
-		alert("delete:"+userRoleId);
 		$.ajax({
 			type:"POST",
 			dataType:"text",

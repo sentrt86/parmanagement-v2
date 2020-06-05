@@ -1,6 +1,10 @@
 package com.htc.par.model;
 
-public class Recruiter {
+import java.io.Serializable;
+
+public class Recruiter implements Serializable {
+
+	private static final long serialVersionUID = -5853059410133755981L;
 	
 	private int recruiterId;
 	private String recruiterName;

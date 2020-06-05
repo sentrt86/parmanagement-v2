@@ -19,11 +19,12 @@ $(document).ready(function() {
 	/* To get the next area id and display in the add pop modal */
 
 	$('#areaAdd-btn').click(function(){
+		$('#areaForm').removeClass('was-validated');
 		$.getJSON('nextAreaId', function (data) {
-			$('#areaIdModal').prop("readonly", true);
-			$('#areaIdModal').val(data);
-			$("#areaNameModal").val(" ");
+			$('[name="areaIdModal"]').prop("readonly", true);
+			$('[name="areaIdModal"]').val(data);	
 		});
+		$('[name="areaNameModal"]').val("");
 		$('#areaModalProcess').val("areaAdd");
 		$('#areaEditModal').modal('show');
 	}); 
@@ -43,13 +44,14 @@ $(document).ready(function() {
 	/* To display the area update  pop modal */
 
 	$("#areaTable tbody").on('click', '.btnAreaEdit', function () {
+		$('#areaForm').removeClass('was-validated');
 		var table = $("#areaTable").DataTable();
 		var area = table.row($(this).closest('tr')).data();	
 		$('#areaModalProcess').val("areaEdit");
-		$('#areaIdModal').prop("readonly", true);
-		$('#areaIdModal').val(area[0]);
-		$('#areaNameModal').val(area[1]);
-		$('#areaActiveModal').val(area[2]);
+		$('[name="areaIdModal"]').prop("readonly", true);
+		$('[name="areaIdModal"]').val(area[0]);
+		$('[name="areaNameModal"]').val(area[1]);
+		$('[name="areaActiveModal"]').val(area[2]);
 		$('#areaEditModal').modal('show');		
 
 	});
@@ -57,41 +59,56 @@ $(document).ready(function() {
 	/* Performs the functionality of adding or updating the area informations */
 
 	$('#areaModalEdit-btn').click(function() {
-		var url;
-		var areaId = $('#areaIdModal').val();
-		var areaName = $('#areaNameModal').val();
-		var areaActive = $('#areaActiveModal :selected').val();
-		var process = $('#areaModalProcess').val();
-		var data = '{"areaId":"'+areaId+'","areaName":"'+areaName+'","areaActive":"'+areaActive+'"}';
 
-		if (process == 'areaAdd')
+
+		// Fetch form to apply custom Bootstrap validation
+		var url="";
+		var isValid = $('#areaForm')[0].checkValidity();
+
+		if (!isValid) 
 		{
-			url = "./createArea";
-		}
-		else
-		{
-			url="./updateArea";
+			event.preventDefault();
+			event.stopPropagation();
 		}
 
-		$.ajax({
-			type:"POST",
-			dataType:"text",
-			contentType: "application/json",
-			url:url,
-			data: data,
-			success:function(data){
-				$('#areaEditModal').modal('hide');	
-				$('#messageModalBody').html(data);
-				$('#messageModal').modal('show');  				
-			},
-			error:function(req, status, error)
+		$('#areaForm').addClass('was-validated');
+
+		if (isValid)
+		{
+			var areaId = $('[name="areaIdModal"]').val();
+			var areaName = $('[name="areaNameModal"]').val();
+			var areaActive = $('[name="areaActiveModal"] :selected').val();
+			var process = $('#areaModalProcess').val();
+			var data = '{"areaId":"'+areaId+'","areaName":"'+areaName+'","areaActive":"'+areaActive+'"}';	
+		
+			if (process == 'areaAdd')
 			{
-				
-				console.log(req.responseText);
-				console.log(status,error);
-			}	
-		});
-
+				url = "./createArea";
+			}
+			else
+			{
+				url="./updateArea";
+			}
+	
+			$.ajax({
+				type:"POST",
+				dataType:"text",
+				contentType: "application/json",
+				url:url,
+				data: data,
+				success:function(data){
+					$('#areaEditModal').modal('hide');	
+					$('#messageModalBody').html(data);
+					$('#messageModal').modal('show');  				
+				},
+				error:function(req, status, error)
+				{
+					
+					console.log(req.responseText);
+					console.log(status,error);
+				}	
+			});
+		 }
 	});
 
 	/* Reload the page after the message modal is closed */
@@ -124,9 +141,7 @@ $(document).ready(function() {
 			}	
 		});
 	});
-
-
-
-
+	
+	
 
 } );

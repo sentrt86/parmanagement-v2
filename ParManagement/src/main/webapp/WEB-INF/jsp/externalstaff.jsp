@@ -25,9 +25,8 @@
 	<link rel="stylesheet" href="static/css/externalstaff.css">		
 	
 	<!-- JQuery -->
-	<script type="text/javascript" src="static/js/jquery.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery-3.5.1.js"></script>
-
+	<script type="text/javascript" src="static/js/popper.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>	
 	<script type="text/javascript" src="static/js/bootstrap.js"></script>
 	<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
@@ -118,40 +117,48 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal">
-						  <div class="form-group">
-						    <label>ExternalStaff Id</label>
-						    <input type="text" class="form-control" id="externalStaffIdModal">
-						  </div>
-						  <div class="form-group">
-						    <label>ExternalStaff Name</label>
-						    <input type="text" class="form-control" id="externalStaffNameModal">
-						  </div> 
-						  <div class="form-group">
-						    <label>Area Name</label>
-							    <select class="form-control" id="externalStaffAreaModal">
-							     	<c:forEach var="area" items="${allAreasList}">
-						   				<option  value="${area.areaId}" >${area.areaName}</option>
-		        	   				</c:forEach>
-							    </select>
-						  </div>
-						  <div class="form-group">
-						    <label>ExternalStaff Active</label>
-							    <select class="form-control" id="externalStaffActiveModal">
-							      <option value="Yes">Yes</option>
-							      <option value="No">No</option>
-							    </select>
-						  </div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="externalStaffModalEdit-btn">Save</button>
-						<button type="button" class="btn btn-primary cancel"
-							data-dismiss="modal">Cancel</button>
-						<input type="hidden" id="externalStaffModalProcess"/>
-					</div>
-				</div>
-			</div>
+						<form class="container" novalidate=""  id="extStaffForm">
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess1">External Staff Id</label>
+							        <input type="text" class="form-control" name="externalStaffIdModal" id="inputSuccess1" required>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the external Staff id</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess2">External Staff Name</label>
+							        <input type="text" class="form-control"  name="externalStaffNameModal" required id="inputSuccess2">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the external staff name</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess3">Area Name</label>
+							        <select class="form-control" name="externalStaffAreaNameModal" required id="inputSuccess3">
+								        <%-- <c:forEach var="area" items="${allAreasList}">
+						   					<option  value="${area.areaId}" >${area.areaName}</option>
+		        	   					</c:forEach> --%>
+								    </select>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the area name</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess4">External Staff Active</label>
+							        <select class="form-control" name="externalStaffActiveModal" required id="inputSuccess4">
+								      <option value="Yes">Yes</option>
+								      <option value="No">No</option>
+								    </select>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the external staff active yes or no</div>
+							    </div>
+								 <div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="externalStaffModalEdit-btn">Save</button>
+									<button type="button" class="btn btn-primary cancel"
+											data-dismiss="modal">Cancel</button>
+									<input type="hidden" id="externalStaffModalProcess"/>
+								</div>
+							</form>
+					  </div>
+				 </div>
+			 </div>
 		</div>
 		
 		<!-- Message Modal -->
