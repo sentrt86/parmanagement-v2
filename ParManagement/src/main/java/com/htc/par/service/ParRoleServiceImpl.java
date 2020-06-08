@@ -26,6 +26,8 @@ public class ParRoleServiceImpl implements IParRoleService {
 	@Autowired
 	RestTemplate restTemplate;
 	
+	// Get the all the par role id from par role table
+	
 	@Override
 	public List<ParRole> getAllParRoles() throws Exception{
 
@@ -42,6 +44,26 @@ public class ParRoleServiceImpl implements IParRoleService {
 		}
 		return null;
 	}
+	
+	
+	// Get the all the active par role id from par role table
+	
+		@Override
+		public List<ParRole> getActiveParRoles() throws Exception{
+
+			String url = parServiceApiUrl + "/role/getActiveParRoles";
+			
+			ResponseEntity<List<ParRole>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<ParRole>>() {});
+			if (response.getStatusCode() == HttpStatus.OK)
+			{
+				List<ParRole> allParRoles = response.getBody();
+				  for(ParRole parRole: allParRoles) {
+					  parRole.setRoleActive(parRole.getRoleActive().equalsIgnoreCase("true") ? "Yes" : "No");
+				  }
+				  return allParRoles;
+			}
+			return null;
+		}
 
 	// Get the next par role id from par role sequence
 	

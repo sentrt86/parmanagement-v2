@@ -44,7 +44,7 @@
 				<div>
 			    	<h1 class="screen-title">PAR</h1>
 			    </div>
-				<form class="form-top">
+				<form class="form-top" id="parEntryForm">
 				  <div class="row">
 				    <div class="col col-sm-4">
 				      <div class="form-inline">
@@ -55,7 +55,7 @@
 				      </div>
 				    </div>
 				    <div class="col">
-				      <button type="button" class="btn btn-primary">New</button>
+				      <button type="button" class="btn btn-primary" id="parSeqNew-btn">New</button>
 				   	</div>
 				  </div>
 				  <hr class="linebreak"></hr>
@@ -84,7 +84,7 @@
 				    <div class="col-sm">
 				       <div class="form-group">
 				       		<label class="form-control-label mr-sm-2" for="inputSuccess4">Skill</label>
-					        <select class="form-control mb-6 mr-sm-2" name="skill" required id="inputSuccess4" style="width:230px;">
+					        <select class="form-control mb-6 mr-sm-2" name="skillName" required id="inputSuccess4" style="width:230px;">
 					            <option value="" disabled selected>Select the Skill</option>
 						        <c:forEach var="skill" items="${allSkillsList}">
 				   					<option  value="${skill.skillId}" >${skill.skillName}</option>
@@ -97,7 +97,7 @@
 				    <div class="col-sm" >
 				       <div class="form-group">
 				       		<label class="form-control-label mr-sm-2" for="inputSuccess5">Location</label>
-					        <select class="form-control mb-6 mr-sm-2" name="location" required id="inputSuccess5" style="width:230px;">
+					        <select class="form-control mb-6 mr-sm-2" name="locationName" required id="inputSuccess5" style="width:230px;">
 					            <option value="" disabled selected>Select the Location</option>
 						        <c:forEach var="skill" items="${allLocationsList}">
 				   					<option  value="${location.skillId}" >${location.locationName}</option>
@@ -170,7 +170,7 @@
 				  </div>
 				  <div class="row  mt-3 marginRow">
 				   	  <div class="col">
-				   	   	<button type="button" class="btn btn-primary">Save</button>
+				   	   	<button type="button" class="btn btn-primary" id="parEntrySave-btn">Save</button>
 				   	  </div>
 				  		
 				  </div>

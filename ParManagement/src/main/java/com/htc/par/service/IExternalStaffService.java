@@ -9,6 +9,7 @@ import com.htc.par.model.ExternalStaff;
 @Service
 public interface IExternalStaffService {
 	public List<ExternalStaff>  getAllExtStaffs() throws Exception;
+	public List<ExternalStaff>  getActiveExtStaffs() throws Exception;
 	public int getNextExtStaffId() throws Exception;
 	public String deleteExtStaff(int extStaffId) throws Exception;
 	public String createExtStaff(ExternalStaff externalStaff) throws Exception;

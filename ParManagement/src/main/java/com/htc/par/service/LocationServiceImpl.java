@@ -45,6 +45,27 @@ public class LocationServiceImpl implements ILocationService{
 		
 		
 	}
+	
+	
+	@Override
+	public List<Location> getActiveLocation() throws Exception {
+		ResponseException responseException = null;
+		String url = parServiceApiUrl + "/location/getActiveLocations";
+		try {
+			ResponseEntity<List<Location>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Location>>() {});
+			List<Location> allLocations = response.getBody();
+			  for(Location location: allLocations) {
+				  location.setLocationActive(location.getLocationActive().equalsIgnoreCase("true") ? "Yes" : "No");
+			  }
+			  return allLocations;
+		}catch(HttpStatusCodeException e) {
+			ObjectMapper mapper = new ObjectMapper();		
+			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+			throw new Exception(responseException.getMessage());
+		}
+		
+		
+	}
 
 	@Override
 	public String createLocation(Location location) throws Exception {

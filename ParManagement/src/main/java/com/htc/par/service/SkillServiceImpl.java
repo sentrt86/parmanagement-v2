@@ -44,6 +44,25 @@ public class SkillServiceImpl implements ISkillService {
 		}
 		return null;
 	}
+	
+	
+	// Get all the active skills from the skill table
+
+		@Override
+		public List<Skill> getActiveSkills() {
+			String url = parServiceApiUrl + "/skill/getActiveSkills";
+			
+			ResponseEntity<List<Skill>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Skill>>() {});
+			if (response.getStatusCode() == HttpStatus.OK)
+			{
+				List<Skill> allSkills = response.getBody();
+				  for(Skill skill: allSkills) {
+					  skill.setSkillActive(skill.getSkillActive().equalsIgnoreCase("true") ? "Yes" : "No");
+				  }
+				  return allSkills;
+			}
+			return null;
+		}
 
 	// Get the next skill id from skill sequence
 	

@@ -23,6 +23,7 @@ public class ExternalStaffServiceImpl  implements IExternalStaffService{
 	@Autowired
 	RestTemplate restTemplate;
 	
+	// Get all the external staff 
 	@Override
 	public List<ExternalStaff> getAllExtStaffs() throws Exception {
 		ResponseException responseException = null;
@@ -41,6 +42,26 @@ public class ExternalStaffServiceImpl  implements IExternalStaffService{
 		}
 	
 	}
+	
+	// Get all the active external staff 
+		@Override
+		public List<ExternalStaff> getActiveExtStaffs() throws Exception {
+			ResponseException responseException = null;
+			String url = parServiceApiUrl + "/extstaff/getActiveExtStaffs";
+			try {
+				ResponseEntity<List<ExternalStaff>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<ExternalStaff>>() {});
+				List<ExternalStaff> allExtStaffs = response.getBody();
+				  for(ExternalStaff extStaff: allExtStaffs) {
+					  extStaff.setExtStaffActive(extStaff.getExtStaffActive().equalsIgnoreCase("true") ? "Yes" : "No");
+				  }
+				  return allExtStaffs;
+			}catch(HttpStatusCodeException e) {
+				ObjectMapper mapper = new ObjectMapper();		
+				responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+				throw new Exception(responseException.getMessage());
+			}
+		
+		}
 
 		// Get the next extStaff id from extStaff sequence
 		

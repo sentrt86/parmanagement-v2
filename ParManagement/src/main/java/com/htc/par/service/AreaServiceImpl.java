@@ -16,19 +16,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.htc.par.model.Area;
 import com.htc.par.model.ResponseException;
 
-	
+
 
 @Service
 public class AreaServiceImpl implements IAreaService{
 
 	@Value("${ParServiceApiUrl}")
 	private String parServiceApiUrl;
-	
+
 	@Autowired
 	RestTemplate restTemplate;
-	
-	
-	// Get all the areas from the area table
+
+
+	// Get all the areas
 
 	@Override
 	public List<Area> getAllAreas() throws Exception  {
@@ -37,10 +37,10 @@ public class AreaServiceImpl implements IAreaService{
 		try {
 			ResponseEntity<List<Area>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Area>>() {});
 			List<Area> allAreas = response.getBody();
-			  for(Area area: allAreas) {
-				  area.setAreaActive(area.getAreaActive().equalsIgnoreCase("true") ? "Yes" : "No");
-			  }
-			  return allAreas;
+			for(Area area: allAreas) {
+				area.setAreaActive(area.getAreaActive().equalsIgnoreCase("true") ? "Yes" : "No");
+			}
+			return allAreas;
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
@@ -48,8 +48,28 @@ public class AreaServiceImpl implements IAreaService{
 		}
 	}
 
-    // Get the next area id from area sequence
-	
+	// Get all the active areas
+
+	@Override
+	public List<Area> getActiveAreas() throws Exception  {
+		ResponseException responseException = null;
+		String url = parServiceApiUrl + "/area/getActiveAreas";
+		try {
+			ResponseEntity<List<Area>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Area>>() {});
+			List<Area> allAreas = response.getBody();
+			for(Area area: allAreas) {
+				area.setAreaActive(area.getAreaActive().equalsIgnoreCase("true") ? "Yes" : "No");
+			}
+			return allAreas;
+		}catch(HttpStatusCodeException e) {
+			ObjectMapper mapper = new ObjectMapper();		
+			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+			throw new Exception(responseException.getMessage());
+		}
+	}
+
+	// Get the next area id 
+
 	@Override
 	public int getNextAreaId() throws Exception {
 		ResponseException responseException = null;
@@ -61,34 +81,34 @@ public class AreaServiceImpl implements IAreaService{
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
 			throw new Exception(responseException.getMessage());
-			
+
 		}
-		
+
 	}
 
-	
-	// Delete the area from the area table
-	
+
+	// Delete the area
+
 	@Override
 	public String deleteArea(int areaId) throws Exception {	
 		ResponseException responseException = null;
 		String url = parServiceApiUrl + "/area/deleteArea/"+ areaId;
 		HttpEntity<Integer> request = new HttpEntity<>(areaId);
 		try {
-		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
-		return response.getBody();
+			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
+			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);	
 			System.out.println("error:"+ responseException.getMessage());
 		}
-		
+
 		return responseException.getMessage();
 	}
 
 
-	// create the area  in the area table
-	
+	// create the area 
+
 	@Override
 	public String createArea(Area area) throws Exception {
 		ResponseException responseException = null;
@@ -105,8 +125,8 @@ public class AreaServiceImpl implements IAreaService{
 		return responseException.getMessage();
 	}
 
-	// update area in the area table
-	
+	// update the area
+
 	@Override
 	public String updateArea(Area area) throws Exception {
 		ResponseException responseException = null;
@@ -114,13 +134,13 @@ public class AreaServiceImpl implements IAreaService{
 		area.setAreaActive(area.getAreaActive().equalsIgnoreCase("Yes") ? "true" : "false");
 		HttpEntity<Area> request = new HttpEntity<>(area);
 		try {
-		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
-		return response.getBody();
+			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});		
+			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);	
 		}
-		
+
 		return responseException.getMessage();
 	}
 

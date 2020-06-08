@@ -7,6 +7,7 @@ import com.htc.par.model.Location;
 public interface ILocationService {
 	
 	List<Location> getallLocation()throws Exception;
+	List<Location> getActiveLocation()throws Exception;
 	int getNextLocationId()throws Exception;
 	String createLocation(Location location)throws Exception;
 	String updateLocation(Location location)throws Exception;
