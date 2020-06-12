@@ -16,7 +16,8 @@ $(document).ready(function() {
 		$.getJSON('getNextParSeqId', function (data) {
 			$('[name="parId"]').val(data);	
 		});
-		$('[name="parId"]').prop("readonly", true);
+		$('[name="parId"]').prop("readonly", true); 	
+		
 	});
 	
 	
@@ -26,7 +27,6 @@ $(document).ready(function() {
 
 
 		// Fetch form to apply custom Bootstrap validation
-		var url="";
 		var isValid = $('#parEntryForm')[0].checkValidity();
 
 		if (!isValid) 
@@ -37,31 +37,39 @@ $(document).ready(function() {
 
 		$('#parEntryForm').addClass('was-validated');
 
+		alert(isValid);
 		if (isValid)
 		{
 			var parId = $('[name="parId"]').val();
 			var parNo = $('[name="parNo"]').val();
-			var parDescription = $('[name="parDescription"]').val();
-			var parReceivedDate = $('[name="parReceivedDate"]').val();	
-			var parRole = $('[name="parRole"] :selected').val();
+			var parDescriptionText = $('[name="parDescription"]').val();
+			var parReceivedDate = $('[name="parDateReceived"]').val();	
+			var roleId = $('[name="parRole"] :selected').val();
 			var skillId = $('[name="skillName"] :selected').val();
 			var locationId = $('[name="locationName"] :selected').val();
 			var areaId     = $('[name="areaName"] :selected').val();
 			var extStaffId  = $('[name="extStaffName"] :selected').val();
 			var activePar  = $('[name="activePar"] :selected').val();
 			var process = $('#areaModalProcess').val();
-			var data = '{"parId":"'+parId+'","parNo":"'+parNo+'","parRole":"'+parRole+'","skillId":"'+skillId+'","locationId":"'+locationId+'","parDescription":"'+parDescription+'","areaId":"'+areaId+'","extStaffId":"'+extStaffId+'","parReceivedDate":"'+parReceivedDate+'","activePar":"'+activePar+'"}';	
-		
-	
+			var intentToFill = "false";
+			var intentSentDate = " ";
+			var emailSent = "false";
+			var parComment = " ";
+			var data = '{"parId":"'+parId+'","parNumber":"'+parNo+'","roleId":"'+roleId+'","skillId":"'+skillId+'","locationId":"'+locationId+'","parDescriptionText":"'+parDescriptionText+'","areaId":"'+areaId+'","extStaffId":"'+extStaffId+'","parReceivedDate":"'+parReceivedDate+'","intentToFill":"'+intentToFill+'","intentSentDate":"'+intentSentDate+'","emailSent":"'+emailSent+'","parComment":"'+parComment+'","parStatus":"'+activePar+'"}';	
+		    var url = "./createParMaster";
+			
+			alert(data);
+			
+			
 			$.ajax({
 				type:"POST",
 				dataType:"text",
 				contentType: "application/json",
-				url:"./createParMaster",
+				url:url,
 				data: data,
 				success:function(data){	
 					$('#messageModalBody').html(data);
-					$('#messageModal').modal('show');  				
+					$('#messageModal').modal('show');  
 				},
 				error:function(req, status, error)
 				{
@@ -70,13 +78,15 @@ $(document).ready(function() {
 					console.log(status,error);
 				}	
 			});
-		 }
+		}
 	});
 
+	
 	/* Reload the page after the message modal is closed */
 
 	$('#messageClose-btn').click(function(){
 		location.reload(); 
 	});
+
 
 });

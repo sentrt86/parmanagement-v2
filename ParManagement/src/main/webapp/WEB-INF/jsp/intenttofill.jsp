@@ -34,7 +34,7 @@
 		<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
 		<!-- Par Management Java Script -->
 		<script type="text/javascript" src="static/js/common.js"></script>
-		<script type="text/javascript" src="static/js/parentry.js"></script>
+		<script type="text/javascript" src="static/js/intenttofill.js"></script>
 	</head>
 	<body>
 			<!-- Page Header and Menu jsp -->
@@ -54,7 +54,10 @@
 				      </div>
 				    </div>
 				  </div>
+				  <input type="hidden" name="parId">
+				 </form>
 				  <hr class="linebreak"></hr>
+				 <form class="form-top" id="intentToFill-Form">
 				  <div class="row mt-3">
 				    <div class="col">
 				      <div class="form-group">
@@ -73,7 +76,7 @@
 				     <div class="col">
 					  <div class="form-group">
 					    <label class="form-control-label mr-sm-2" for="inputSuccess4">Par Intent To Fill (Y/N)</label>
-				        <select class="form-control mb-6 mr-sm-2" name="parIntentToFill" required id="inputSuccess4">
+				        <select class="form-control mb-6 mr-sm-2" name="intentToFill" required id="inputSuccess4">
 				          <option value="" disabled selected>Select the Par Intent to Fill (Y/N)</option>
 					      <option value="Yes">Yes</option>
 					      <option value="No">No</option>
@@ -85,7 +88,7 @@
 				    <div class="col">
 				      <div class="form-group">
 				      	<label class="form-control-label mr-sm-2" for="inputSuccess5">Date - Intent Sent</label>
-				      	<input type="date" class="form-control mb-6 mr-sm-2" name="initentDateSent" id="inputSuccess5" required placeholder="Enter Intent Date">
+				      	<input type="date" class="form-control mb-6 mr-sm-2" name="intentSentDate" id="inputSuccess5" required placeholder="Enter Intent Date">
 				        <div class="valid-feedback">Success!</div>
 				       	<div class="invalid-feedback">Please enter the par intent sent date</div>
 				      </div>
@@ -93,7 +96,7 @@
 				  </div>
 				  <div class="row  mt-3 ">
 				   	  <div class="col">
-				   	   	<button type="button" class="btn btn-primary">Save</button>
+				   	   	<button type="button" class="btn btn-primary" id="intentToFillSave-btn">Save</button>
 				   	  </div>
 				  		
 				  </div>

@@ -44,12 +44,12 @@
 				<div>
 			    	<h1 class="screen-title">PAR</h1>
 			    </div>
-				<form class="form-top" id="parEntryForm">
+				<form class="form-top">
 				  <div class="row">
 				    <div class="col col-sm-4">
 				      <div class="form-inline">
 				      	<label class="form-control-label" for="inputSuccess1">Par No :  </label> &nbsp;&nbsp;
-				        <input type="text" class="form-control mb-6 mr-sm-2" name="parId" id="inputSuccess1" required readonly style="width:205px;" placeholder="Par No">
+				        <input type="text" class="form-control mb-6 mr-sm-2" name="parId" id="inputSuccess1" required  style="width:205px;" placeholder="Par No">
 				        <div class="valid-feedback">Success!</div>
 				        <div class="invalid-feedback">Please enter the par no</div>
 				      </div>
@@ -58,7 +58,10 @@
 				      <button type="button" class="btn btn-primary" id="parSeqNew-btn">New</button>
 				   	</div>
 				  </div>
-				  <hr class="linebreak"></hr>
+				 </form>
+
+				 <hr class="linebreak"></hr>
+				 <form class="form-top" id="parEntryForm"> 
 				  <div class="row mt-3 marginRow">
 				    <div class="col-sm">
 				      <div class="form-group">
@@ -99,8 +102,8 @@
 				       		<label class="form-control-label mr-sm-2" for="inputSuccess5">Location</label>
 					        <select class="form-control mb-6 mr-sm-2" name="locationName" required id="inputSuccess5" style="width:230px;">
 					            <option value="" disabled selected>Select the Location</option>
-						        <c:forEach var="skill" items="${allLocationsList}">
-				   					<option  value="${location.skillId}" >${location.locationName}</option>
+						        <c:forEach var="location" items="${allLocationsList}">
+				   					<option  value="${location.locationId}" >${location.locationName}</option>
 	       	   					</c:forEach>
 						    </select>
 					        <div class="valid-feedback">Success!</div>
@@ -181,9 +184,7 @@
 				<span>Copyright &copy; 2020 HTC GLOBAL SERVICES All rights reserved.</span>
 			</footer>
 			
-		
-			
-			<!-- Message Modal -->
+		    <!-- Message Modal -->
 			<jsp:include page="Message.jsp" />
 	</body>
 	</html>
