@@ -35,7 +35,7 @@
 		<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
 		<!-- Par Management Java Script -->
 		<script type="text/javascript" src="static/js/common.js"></script>
-		<script type="text/javascript" src="static/js/parentry.js"></script>
+		<script type="text/javascript" src="static/js/emailrecruiters.js"></script>
 	</head>
 	<body>
 			<!-- Page Header and Menu jsp -->
@@ -44,12 +44,12 @@
 				<div>
 			    	<h1 class="screen-title">Email Recruiters</h1>
 			    </div>
-				<form class="form-top">
+				<form class="form-top" id="parEntryForm">
 				  <div class="row">
 				    <div class="col col-sm-4">
 				      <div class="form-inline">
 				      	<label class="form-control-label" for="inputSuccess1">Par No :  </label> &nbsp;&nbsp;
-				        <input type="text" class="form-control mb-6 mr-sm-2" name="parId" id="inputSuccess1" required  placeholder="Enter Par No" style="width:205px;">
+				        <input type="text" class="form-control mb-6 mr-sm-2" name="parNo" id="inputSuccess1" required  placeholder="Enter Par No" style="width:205px;">
 				        <div class="valid-feedback">Success!</div>
 				        <div class="invalid-feedback">Please enter the par no</div>
 				      </div>
@@ -65,12 +65,12 @@
 				  </div>
 				  <hr class="linebreak"></hr>
 				  <div class="row mt-3 marginRow">
-				    <div class="col" >
+				   <!--  <div class="col" >
 				      <div class="form-group">
 				        <label class="form-control-label" for="inputSuccess3">Par No </label>
 				      	<input type="text" class="form-control mb-6 mr-sm-2" name="parNo" id="inputSuccess3" placeholder="Par No" readonly>
 				      </div>
-				    </div>
+				    </div> -->
 				    <div class="col">
 				      <div class="form-group">
 				      		<label class="form-control-label" for="inputSuccess4">Role</label>
@@ -80,13 +80,13 @@
 				    <div class="col">
 				       <div class="form-group">
 				       		<label class="form-control-label" for="inputSuccess5">Skill</label>
-				       		<input type="text" class="form-control mb-6 mr-sm-2" name="skill" id="inputSuccess5"  placeholder="Skill" readonly>
+				       		<input type="text" class="form-control mb-6 mr-sm-2" name="skillName" id="inputSuccess5"  placeholder="Skill" readonly>
 					   </div>
 				    </div>
 				    <div class="col">
 				       <div class="form-group">
 				       		<label class="form-control-label" for="inputSuccess6">Location</label>
-				       		<input type="text" class="form-control mb-6 mr-sm-2" name="location" id="inputSuccess6"  placeholder="Skill" readonly>
+				       		<input type="text" class="form-control mb-6 mr-sm-2" name="locationName" id="inputSuccess6"  placeholder="Skill" readonly>
 					   </div>
 				    </div>
 				  </div>
@@ -94,7 +94,7 @@
 				    <div class="col">
 				      <div class="form-group">
 				          <label class="form-control-label" for="inputSuccess7" >Description</label>
-						  <textarea class="form-control" rows="5" name="parDescription"  id="inputSuccess7" placeholder="Description" readonly></textarea>
+						  <textarea class="form-control" rows="5" name="parDescriptionText"  id="inputSuccess7" placeholder="Description" readonly></textarea>
 					  </div>
 				    </div>
 				  </div>
@@ -128,7 +128,7 @@
 				  </div>
 				  <div class="row">
 				  	<div class="col">
-				      <button type="button" class="btn btn-primary">Send Email</button>
+				      <button type="button" class="btn btn-primary" id="sendEmail-btn">Send Email</button>
 				    </div>
 				  </div>
 				</form>

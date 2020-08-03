@@ -1,4 +1,8 @@
 
+.btn.btn-primary[disabled] {
+    background-color: #ff5000;
+}
+
 .sidenav {
  min-height: 880px;
  max-height:880px;

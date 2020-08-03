@@ -9,7 +9,8 @@ import com.htc.par.model.Prescreener;
 @Service
 public interface IPreScreenerService {
 	
-	List<Prescreener> getListAllPreScreener() throws Exception;
+	List<Prescreener> getAllPreScreener() throws Exception;
+	List<Prescreener> getAllActivePreScreeners() throws Exception;
 	int getnextPrescreenerID() throws Exception;
 	String addPrescreener(Prescreener prescreener)throws Exception;
 	String updatePrescreener(Prescreener prescreener)throws Exception;

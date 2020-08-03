@@ -35,7 +35,7 @@
 		<script type="text/javascript" src="static/js/datatables.bootstrap4.min.js"></script>	
 		<!-- Par Management Java Script -->
 		<script type="text/javascript" src="static/js/common.js"></script>
-		<script type="text/javascript" src="static/js/candidateReceived.js"></script>
+		<script type="text/javascript" src="static/js/candidatereceived.js"></script>
 	</head>
 	<body>
 			<!-- Page Header and Menu jsp -->
@@ -86,144 +86,24 @@
 				  </div>
 				  <div class="row  mt-3 ">
 				   	  <div class="col">
-				   	   	<button type="button" class="btn btn-primary">Add Candidate</button>
+				   	   	<button type="button" class="btn btn-primary" id="candidateAdd-btn">Add Candidate</button>
 				   	  </div>
+				   	  <input type="hidden" id="parId" name="parId">
 				  		
 				  </div>
 				</form>
 				
 				<div class="tablediv">
-			    	<table id="candidateReceivedTable" class="table table-striped table-bordered" style="width:100%">
+			    	<table id="candidateReceivedTable" class="table table-striped table-bordered" style="width:130%">
 					     <thead>
 					         <tr>
+					         	 <th>Id</th>
 					             <th>Candidate Name</th>
 					             <th>Recruiter Name</th>
 					             <th>Date Received</th>
 					             <th>Action</th>
 					         </tr>
 					     </thead>
-					     <tbody>
-					     	<%-- <c:forEach var="candidate" items="${allParCandidatesList}">
-					     		<tr>
-					     			<td>${candidate.candidateName}</td>
-					     			<td>${candidate.recruiterName}</td>
-					     			<td>${candidate.dateReceived}</td>
-					     			<td>
-					     				<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     			</td>
-					     		</tr>        		
-					     	</c:forEach> --%>
-					     <!-- 	<tr>
-					     		<td> Anu </td>
-					     		<td> Raja </td>
-					     		<td> 01/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Mike </td>
-					     		<td> Raja </td>
-					     		<td> 02/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Raju </td>
-					     		<td> Raja </td>
-					     		<td> 03/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Deepika </td>
-					     		<td> Raja </td>
-					     		<td> 04/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Karthi </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Magesh </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Menon </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Balraj </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Ram </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr> -->
-					     	
-					     </tbody>
 					</table>
 			   </div>
 			</div>
@@ -231,7 +111,70 @@
 				<span>Copyright &copy; 2020 HTC GLOBAL SERVICES All rights reserved.</span>
 			</footer>
 			
-		
+			<!-- Edit Candidate received Message Modal -->
+			<div class="modal fade" id="candidateReceivedEditModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Add / Update Candidate Received</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form class="container" novalidate=""  id="candidateReceivedForm">
+							     <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess6">Candidate Name</label>
+							        <select class="form-control" name="candidateNameModal" required id="inputSuccess6">
+								    </select>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the Candidate Name</div>
+							    </div>
+							     <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess7">Recruiter Name</label>
+							        <select class="form-control" name="recruiterNameModal" required id="inputSuccess7">
+								    </select>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the Recruiter Name</div>
+							    </div>
+							    <div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="candidateReceivedModalEdit-btn">Save</button>
+									<button type="button" class="btn btn-primary cancel"
+											data-dismiss="modal">Cancel</button>
+									<input type="hidden" id="candidateReceivedModalProcess"/>
+									
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Delete candidate Received Message Modal -->
+			<div class="modal fade" id="candidateReceivedDeleteconfirmModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Delete
+								Confirmation</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p id="candidateReceivedDeleteconfirmModalBody"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="candidateReceivedModalDelete-btn">Delete</button>
+							<button type="button" class="btn btn-primary cancel"
+								data-dismiss="modal">Cancel</button>
+							<input type="hidden" id="candidateReceivedModalDeleteParAllocId"/>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<!-- Message Modal -->
 			<jsp:include page="Message.jsp" />

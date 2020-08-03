@@ -27,7 +27,7 @@ public class PreScreenerServiceImpl implements IPreScreenerService {
 	RestTemplate restTemplate;
 
 	@Override
-	public List<Prescreener> getListAllPreScreener() throws Exception {
+	public List<Prescreener> getAllPreScreener() throws Exception {
 		ResponseException responseException = null;
 		String url = parServiceApiUrl + "/prescreener/getPrescreeners";
 		try {
@@ -109,6 +109,25 @@ public class PreScreenerServiceImpl implements IPreScreenerService {
 			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
 			throw new Exception(responseException.getMessage());	
+		}
+	}
+
+
+	@Override
+	public List<Prescreener> getAllActivePreScreeners() throws Exception {
+		ResponseException responseException = null;
+		String url = parServiceApiUrl + "/prescreener/getActivePrescreeners";
+		try {
+			ResponseEntity<List<Prescreener>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Prescreener>>() {});
+			List<Prescreener> allPrescreeners = response.getBody();
+			  for(Prescreener prescreener: allPrescreeners) {
+				  prescreener.setPreScreenerActive(prescreener.getPreScreenerActive().equalsIgnoreCase("true") ? "Yes" : "No");
+			  }
+			  return allPrescreeners;
+		}catch(HttpStatusCodeException e) {
+			ObjectMapper mapper = new ObjectMapper();		
+			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+			throw new Exception(responseException.getMessage());
 		}
 	}
 

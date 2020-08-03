@@ -84,127 +84,19 @@
 					   </div>
 				    </div>
 				  </div>
+				  <input type="hidden" id="parId" name="parId">
 				</form>
 				
 				<div class="tablediv">
 			    	<table id="submitCandidateTable" class="table table-striped table-bordered" style="width:100%">
 					     <thead>
 					         <tr>
+					         	 <th>Id</th>
 					             <th>Candidate Name</th>
 					             <th>Submission Date</th>
 					             <th>Action</th>
 					         </tr>
 					     </thead>
-					     <tbody>
-					     	<%-- <c:forEach var="candidate" items="${allParCandidatesList}">
-					     		<tr>
-					     			<td>${candidate.candidateName}</td>
-					     			<td>${candidate.dateReceived}</td>
-					     			<td>
-					     				<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     			</td>
-					     		</tr>        		
-					     	</c:forEach> --%>
-					     	<tr>
-					     		<td> Anu </td>
-					     		<td> 01/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Mike </td>
-					     		<td> 02/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Raju </td>
-					     		<td> 03/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Deepika </td>
-					     		<td> 04/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Karthi </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     			<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Magesh </td>
-
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     			<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Menon </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     			<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Balraj </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     			<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Ram </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     			<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	
-					     </tbody>
 					</table>
 			   </div>
 			</div>
@@ -212,7 +104,69 @@
 				<span>Copyright &copy; 2020 HTC GLOBAL SERVICES All rights reserved.</span>
 			</footer>
 			
-		
+			<!-- Edit Candidate received Message Modal -->
+			<div class="modal fade" id="submitCandidateEditModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Update Submit Candidate</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form class="container" novalidate=""  id="submitCandidateForm">
+							     <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess6">Candidate Name</label>
+								     <input type="text" class="form-control"  name="candidateNameModal" required id="inputSuccess6">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the Candidate Name</div>
+							        
+							    </div>
+							     <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess7">Submission Date</label>
+							        <input type="date" class="form-control " name="submitDateModal" id="inputSuccess7" required placeholder="Enter Submission Date">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the Submission Date</div>
+							    </div>
+							    <div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="submitCandidateModalEdit-btn">Save</button>
+									<button type="button" class="btn btn-primary cancel"
+											data-dismiss="modal">Cancel</button>
+									<input type="hidden" id="submitCandidateModalProcess"/>
+									<input type="hidden" id="submitCandidateModalEditParAllocId">									
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Delete candidate submit Message Modal -->
+			<div class="modal fade" id="submitCandidateDeleteconfirmModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Delete
+								Confirmation</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p id="submitCandidateDeleteconfirmModalBody"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="submitCandidateModalDelete-btn">Delete</button>
+							<button type="button" class="btn btn-primary cancel"
+								data-dismiss="modal">Cancel</button>
+							<input type="hidden" id="submitCandidateModalDeleteParAllocId"/>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<!-- Message Modal -->
 			<jsp:include page="Message.jsp" />

@@ -41,6 +41,24 @@ public class CandidateServiceImpl  implements ICandidateService{
 			throw new Exception(responseException.getMessage());
 		}
 	}
+	
+	@Override
+	public List<Candidate> getAllActiveCandidates() throws Exception {
+		ResponseException responseException = null;
+		String url = parServiceApiUrl + "/candidate/getActiveCandidates";
+		try {
+			ResponseEntity<List<Candidate>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Candidate>>() {});
+			List<Candidate> allCandidates = response.getBody();
+			  for(Candidate candidate: allCandidates) {
+				  candidate.setCandidateActive(candidate.getCandidateActive().equalsIgnoreCase("true") ? "Yes" : "No");
+			  }
+			  return allCandidates;
+		}catch(HttpStatusCodeException e) {
+			ObjectMapper mapper = new ObjectMapper();		
+			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+			throw new Exception(responseException.getMessage());
+		}
+	}
 
 	// Get the next candidate id from candidate sequence
 	

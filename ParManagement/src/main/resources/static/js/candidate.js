@@ -60,8 +60,6 @@ $(document).ready(function() {
 		$('[name="candidateNameModal"]').val(candidate[1]);
 		$('[name="candidatePhoneNumModal"]').val(candidate[2]);
 		$('[name="candidateEmailTxtModal"]').val(candidate[3]);
-		
-		alert(candidate[4]);
 		$('[name="candidateReceivedDateModal"]').val('01-01-2020');
 		getAllSkills(candidate[5]);
 		$('[name="candidateActiveModal"]').val(candidate[6]);

@@ -1,9 +1,6 @@
 package com.htc.par.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.htc.par.exceptions.ResourceNotFoundException;
 import com.htc.par.model.ParMaster;
 
@@ -11,8 +8,16 @@ import com.htc.par.model.ParMaster;
 public interface IParMasterService {
 	
 	public String createParMaster(ParMaster parmaster) throws Exception;
-	public String updateIntentToFill(ParMaster parmaster) throws Exception;
+	public String updateParMaster(ParMaster parmaster) throws Exception;
+	public String deleteParMasterByParNum(int parNum) throws Exception;
+	public ParMaster getParMasterByParNum(String parNum) throws ResourceNotFoundException,Exception;
+	public String updateIntentToFill(ParMaster parmaster) throws Exception;	
+	public String updateEmailSent(ParMaster parmaster) throws Exception;	
+	public Boolean sendEmailRecruiters(ParMaster parmaster) throws Exception;
 	public int  getNextParSeqId() throws Exception;
-	public List<ParMaster> getParMasterByParNum(String parNum) throws ResourceNotFoundException,Exception;
+	
+	
+	
+	
 
 }

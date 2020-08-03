@@ -28,7 +28,7 @@ public class PreScreenerController {
 		@RequestMapping(value="/prescreener", method=RequestMethod.GET) 
 		public ModelAndView area(Locale locale,Model model)  throws Exception{ 	
 		ModelAndView  modelView = new ModelAndView();
-		List<Prescreener> allPrescreenersList = prescreenerServiceImpl.getListAllPreScreener();
+		List<Prescreener> allPrescreenersList = prescreenerServiceImpl.getAllPreScreener();
 		modelView.addObject("allPrescreenersList", allPrescreenersList );
 		modelView.setViewName("prescreener"); 
 		return modelView;
@@ -83,6 +83,14 @@ public class PreScreenerController {
 		@Consumes(MediaType.TEXT_PLAIN)
 		public @ResponseBody String deletePrescreener(@PathVariable("preScreenerId") String preScreenerId,HttpServletRequest request) throws NumberFormatException, Exception { 
 			return prescreenerServiceImpl.deletePrescreener(Integer.parseInt(preScreenerId));
+		}
+		
+		// Request handler to get all active recruiters
+
+		@RequestMapping(value="/getActivePrescreeners", method=RequestMethod.GET) 
+		@Produces(MediaType.TEXT_PLAIN)
+		public @ResponseBody List<Prescreener> getActivePrescreener(HttpServletRequest request) throws NumberFormatException, Exception { 
+			return prescreenerServiceImpl.getAllActivePreScreeners();
 		}
 
 

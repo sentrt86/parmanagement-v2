@@ -1,5 +1,6 @@
 package com.htc.par.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -120,6 +121,13 @@ public class CandidateController {
 	public @ResponseBody String deleteCandidate(@PathVariable("candidateId") String candidateId,HttpServletRequest request) throws NumberFormatException, Exception { 
 		String data = candidateServiceImpl.deleteCandidate(Integer.parseInt(candidateId));
 		return data;
+	}
+	
+	// Request handler to get all active candidates
+	@RequestMapping(value="/getActiveCandidates", method=RequestMethod.GET) 
+	@Produces(MediaType.TEXT_PLAIN)
+	public @ResponseBody List<Candidate> getActiveCandidate(HttpServletRequest request) throws NumberFormatException, Exception { 
+		return candidateServiceImpl.getAllActiveCandidates();
 	}
 
 }

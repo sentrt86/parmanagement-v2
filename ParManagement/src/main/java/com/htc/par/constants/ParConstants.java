@@ -11,6 +11,8 @@ public class ParConstants {
 	public final static String createSuccessfull         = " Data is created successfully for";
 	public final static String createUnSuccessfull       = " Data is not created successfully for";
 	public final static String duplicateFound            = " Datd already exists for";
+	public final static String emailUnSuccessfull        = " Unable to send email to the recruiters ";
+	public final static String emailSuccessfull          = " Email is sent successfully to the recruiters ";
 
 	
 	

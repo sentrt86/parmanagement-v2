@@ -46,6 +46,27 @@ public class RecruiterServiceImpl implements IRecruiterService{
 			throw new Exception(responseException.getMessage());
 		}
 	}
+	
+	// Get all the active recruiters from the recruiter table
+
+		@Override
+		public List<Recruiter> getAllActiveRecruiters() throws Exception {
+			ResponseException responseException = null;
+			String url = parServiceApiUrl + "/recruiter/getActiveRecruiters";
+			try {
+				ResponseEntity<List<Recruiter>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Recruiter>>() {});
+				List<Recruiter> allRecruiters = response.getBody();
+				for(Recruiter recruiter: allRecruiters) {
+					recruiter.setRecruiterActive(recruiter.getRecruiterActive().equalsIgnoreCase("true") ? "Yes" : "No");
+					recruiter.setRecruiterEmailFlag(recruiter.getRecruiterEmailFlag().equalsIgnoreCase("true") ? "Yes" : "No");
+				}
+				return allRecruiters;
+			}catch(HttpStatusCodeException e) {
+				ObjectMapper mapper = new ObjectMapper();		
+				responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+				throw new Exception(responseException.getMessage());
+			}
+		}
 
 	// Get the next recruiter id from recruiter sequence
 

@@ -20,44 +20,43 @@ $(document).ready(function() {
 		$.ajax({
 			type:"GET",
 			dataType:"text",
-			contentType: "text/plain",
+			contentType: "application/json",
 			url:"./getParMasterByParNum/"+parNum,
 			data: data,
 			success:function(data){
-				var jsonObj = JSON.parse(data);
-				var jsonLen = jsonObj.length;
 				
-				if(jsonLen > 0)
-				{
-					
-					$.each(jsonObj, function() {
-						$('[name="parId"]').val(this.parId);
-						$('[name="parNo"]').val(this.parNumber);
-						var parReceivedDate = this.parReceivedDate.substring(6) + '-' + 
-						                      this.parReceivedDate.substring(0,2) +'-'+
-						                      this.parReceivedDate.substring(3,5);
-						$('[name="parDateReceived"]').val(parReceivedDate);
-						$('[name="extStaffName"]').val(this.externalStaff.extStaffName);
 
-						alert(this.intentToFill);
-						
-						if(this.intentToFill == 'true')
-						{
-							$('[name="intentToFill"]').val("Yes")
-						}
-						
-						if(this.intentToFill == 'false')
-						{
-							$('[name="intentToFill"]').val("No")
-						}
-						
-						var intentSentDate = this.intentSentDate.substring(6) + '-' + 
-	                                         this.intentSentDate.substring(0,2) +'-'+
-	                                         this.intentSentDate.substring(3,5);
-						
+				if(data.length > 0)
+				{
+					var dataout=$.parseJSON(data);
+					$('[name="parId"]').val(dataout.parId);
+					$('[name="parNo"]').val(dataout.parNumber);
+					var parReceivedDate = dataout.parReceivedDate.substring(6) + '-' + 
+					                      dataout.parReceivedDate.substring(0,2) +'-'+
+					                      dataout.parReceivedDate.substring(3,5);
+					$('[name="parDateReceived"]').val(parReceivedDate);
+					$('[name="extStaffName"]').val(dataout.externalStaff.extStaffName);
+					
+					if(dataout.intentToFill == 'true')
+					{
+						$('[name="intentToFill"]').val("Yes")
+					}
+					
+					if(dataout.intentToFill == 'false')
+					{
+						$('[name="intentToFill"]').val("No")
+					}
+					
+					if (dataout.intentSentDate != null)
+					{
+						var intentSentDate = dataout.intentSentDate.substring(6) + '-' + 
+                                             dataout.intentSentDate.substring(0,2) +'-'+
+                                             dataout.intentSentDate.substring(3,5);
+	
 						$('[name="intentSentDate"]').val(intentSentDate);
+					}
+					
 						
-					});	
 				}
 				else
 				{

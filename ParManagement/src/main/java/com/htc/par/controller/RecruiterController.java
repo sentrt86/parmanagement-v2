@@ -1,5 +1,6 @@
 package com.htc.par.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -95,5 +96,13 @@ public class RecruiterController {
 		String data = recruiterServiceImpl.deleteRecruiter(Integer.parseInt(recruiterId));
 		return data;
 	}
+	
+	// Request handler to get all active recruiters
+
+		@RequestMapping(value="/getActiveRecruiters", method=RequestMethod.GET) 
+		@Produces(MediaType.TEXT_PLAIN)
+		public @ResponseBody List<Recruiter> getActiveRecruiter(HttpServletRequest request) throws NumberFormatException, Exception { 
+			return recruiterServiceImpl.getAllActiveRecruiters();
+		}
 
 }
