@@ -269,6 +269,7 @@ public class ParMasterController {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	public @ResponseBody ParMaster getParMasterByParNum(@PathVariable("parNum") String parNum) throws Exception {
+		System.out.println("Senthil Skips for get par master by parnum"+parmasterServiceImpl.getParMasterByParNum(parNum));
 		return parmasterServiceImpl.getParMasterByParNum(parNum);
 
 	}

@@ -42,7 +42,7 @@
 			<jsp:include page="header-menu.jsp" />		
 			<div class="main">
 				<div>
-			    	<h1 class="screen-title">Candidat Onboard</h1>
+			    	<h1 class="screen-title">Candidate Onboard</h1>
 			    </div>
 				<form class="form-top">
 				  <div class="row">
@@ -93,20 +93,11 @@
 					             <th>Candidate Name</th>
 					             <th>Start Date</th>
 					             <th>Started (Y/N) </th>
-					             <th>Start Date</th>
+					             <th>Actual Start Date</th>
+					             <th>Action</th>
 					         </tr>
 					     </thead>
-					     <tbody>
-					     	<%-- <c:forEach var="candidate" items="${allParCandidatesList}">
-					     		<tr>
-					     			<td>${candidate.candidateName}</td>
-					     			<td>${candidate.dateReceived}</td>
-					     			<td>
-					     				<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     			</td>
-					     		</tr>        		
-					     	</c:forEach> --%>
+					     <tbody>					     	
 					     </tbody>
 					</table>
 			   </div>
@@ -114,6 +105,84 @@
 			<footer class="footer">
 				<span>Copyright &copy; 2020 HTC GLOBAL SERVICES All rights reserved.</span>
 			</footer>
+			
+			<!-- Edit Candidate received Message Modal -->
+			<div class="modal fade" id="candidateOnboardEditModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Update candidateOnboard</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form class="container" novalidate=""  id="candidateonboardform">
+							     <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess6">Candidate Name</label>
+								     <input type="text" class="form-control"  name="candidateNameModal" required id="inputSuccess6" readonly>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please select the Candidate Name</div>
+							        
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess7">Start Date</label>
+							        <input type="date" class="form-control "name="startDateModal" required id="inputSuccess7">							
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please add the start date</div>
+							    </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess6">Started </label>
+								     <input type="text" class="form-control"  name="startedModal" required id="inputSuccess6">
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the Candidate Stared Yes/No</div>
+							        
+							    </div>
+							    
+							     <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess8">Actual Start Date</label>
+							        <input type="date"  name="actualStartdateModal" id="inputSuccess8" required>
+							        <div class="valid-feedback">Success!</div>
+							        <div class="invalid-feedback">Please enter the actual start Date</div>
+							    </div>
+							    
+							    <div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="candidateOnboardModalEdit-btn">Save</button>
+									<button type="button" class="btn btn-primary cancel"
+											data-dismiss="modal">Cancel</button>
+									<input type="hidden" id="candidateOnboardModalEditParAllocId">									
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Delete candidateOnboard  Message Modal -->
+			<div class="modal fade" id="candidateOnboardDeleteconfirmModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Delete
+								Confirmation</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p id="candidateOnboardDeleteconfirmModalBody"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="candidateOnboardModalDelete-btn">Delete</button>
+							<button type="button" class="btn btn-primary cancel"
+								data-dismiss="modal">Cancel</button>
+							<input type="hidden" id="canidateOnboardModalDeleteParAllocId"/>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 		
 			

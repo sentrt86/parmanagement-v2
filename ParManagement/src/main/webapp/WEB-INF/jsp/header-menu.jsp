@@ -48,6 +48,7 @@
 		    <a href="./emailrecruiters">Email Recruiters</a>
 		    <a href="./intenttofill">Intent to Fill</a>
 		    <a href="./candidatereceived">Candidate Received</a>
+		    <a href="./candidateStatus">CandidateStatus</a>
 		    <a href="./prescreening">Prescreening</a>
 		    <a href="./submitcandidate">Submit Candidate</a>
 		    <a href="./offerreceived">Offer Received</a>

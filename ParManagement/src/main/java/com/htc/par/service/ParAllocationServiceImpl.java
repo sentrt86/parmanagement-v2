@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.htc.par.exceptions.ResourceNotFoundException;
 import com.htc.par.model.ParAllocation;
@@ -123,6 +125,23 @@ public class ParAllocationServiceImpl  implements IParAllocationService{
 			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();	
+			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+			throw new Exception(responseException.getMessage());
+
+		}
+	}
+
+	public String updateCandidateOnBoard(ParAllocation parAllocation) throws Exception {
+		ResponseException responseException = null;	
+		String url = parServiceApiUrl + "/parallocation/updateCandidateOnBoard";
+		System.out.println("submit:"+ parAllocation.toString());
+		System.out.println("parallocation service class"+ parAllocation);
+		HttpEntity<ParAllocation> request = new HttpEntity<>(parAllocation);
+		try {
+			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, new ParameterizedTypeReference<String>() {});
+			return response.getBody();
+		}catch(HttpStatusCodeException e) {
+			ObjectMapper mapper = new ObjectMapper();		
 			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
 			throw new Exception(responseException.getMessage());
 

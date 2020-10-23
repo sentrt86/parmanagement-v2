@@ -107,10 +107,14 @@ public class ParMasterServiceImpl  implements IParMasterService{
 	@Override
 	public ParMaster getParMasterByParNum(String parNum) throws Exception {
 		ResponseException responseException = null;
+		System.out.println("senthil skips- parmaster service method");
+		System.out.println("----------------------------------------");
 		String url = parServiceApiUrl + "/parmaster/getParMasterByParNum/"+parNum;
+		System.out.println("url value:- "+url);
 		HttpEntity<String> request = new HttpEntity<>(parNum);
 		try {
 			ResponseEntity<ParMaster> response = restTemplate.exchange(url, HttpMethod.GET,request, new ParameterizedTypeReference<ParMaster>() {});
+			System.out.println("after service call======>"+response.getBody());
 			return response.getBody();
 		}catch(HttpStatusCodeException e) {
 			ObjectMapper mapper = new ObjectMapper();	

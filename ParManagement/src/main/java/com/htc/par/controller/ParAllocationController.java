@@ -157,6 +157,39 @@ public class ParAllocationController {
 
 
 	}
+	
+
+	// Request handler to update the par allocation (Candidate onBoard)
+
+	@RequestMapping(value = "/updateCandidateonBoard", method=RequestMethod.POST)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public @ResponseBody String updateCandidateonBoard(@RequestBody String json, HttpServletRequest request) throws Exception {
+		String data = null;
+		ParAllocation parAllocation = new ParAllocation();
+		Candidate candidate = new Candidate();
+
+
+		try { 
+
+			org.json.JSONObject jsonObj = new org.json.JSONObject(json);
+			candidate.setCandidateId(Integer.parseInt(jsonObj.getString("candidateId")));
+
+			parAllocation.setParCode(Integer.parseInt(jsonObj.getString("parCode")));
+			System.out.println("parCode+++++++++++SEnthil"+parAllocation.getParCode());
+			parAllocation.setActualStartDate((jsonObj.getString("actualStartDate")));
+			parAllocation.setCandidate(candidate);
+
+			data = parAllocationServiceImpl.updateCandidateOnBoard(parAllocation);
+
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return data;
+
+
+	}
 
 	// Request handler to get the par allocation by par num
 
@@ -164,6 +197,7 @@ public class ParAllocationController {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
 	public @ResponseBody List<ParAllocation> getParAllocationByParNum(@PathVariable("parNum") String parNum) throws Exception {
+		System.out.println("Senthil skips");
 		return parAllocationServiceImpl.getParAllocationByParNum(parNum);
 
 
